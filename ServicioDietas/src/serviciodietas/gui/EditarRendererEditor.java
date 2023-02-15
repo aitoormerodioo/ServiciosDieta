@@ -15,44 +15,43 @@ import javax.swing.table.TableCellRenderer;
 
 import serviciodietas.data.Cliente;
 
-
-public class DescargarRendererEditor extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
+public class EditarRendererEditor extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 	
 	private static final long serialVersionUID = 1L;
 
 	private Cliente cliente;
 	private VentanaPrincipal mainWindow;
 	
-	public DescargarRendererEditor(VentanaPrincipal mainWindow) {
+	public EditarRendererEditor(VentanaPrincipal mainWindow) {
 		this.mainWindow = mainWindow;
 	}
 	
 	private JButton prepare(JTable table, Object value, boolean isSelected, int row, int column) {
 		cliente = (Cliente) value;
 		
-		JButton BotonDescargar = new JButton("");
+		JButton BotonEditar = new JButton("");
 
-		BotonDescargar.setEnabled(true);
-		BotonDescargar.setToolTipText(String.format("Descargar dieta de - %s", cliente.getNombreC()));				
-		BotonDescargar.setBackground(table.getBackground());
+		BotonEditar.setEnabled(true);
+		BotonEditar.setToolTipText(String.format("Editar dieta de - %s", cliente.getNombreC()));				
+		BotonEditar.setBackground(table.getBackground());
 		
-		ImageIcon imagenDescargar =  new ImageIcon("resources/iconoDescargar.png");
+		ImageIcon imagenDescargar =  new ImageIcon("resources/iconoEditar.png");
 		Icon i= new ImageIcon(imagenDescargar.getImage().getScaledInstance(28, 28, Image.SCALE_SMOOTH));
 		
-		BotonDescargar.setIcon(i);
+		BotonEditar.setIcon(i);
 		
 		if (isSelected) {
-			BotonDescargar.setBackground(table.getSelectionBackground());
+			BotonEditar.setBackground(table.getSelectionBackground());
 		}
 		
-		BotonDescargar.addActionListener((e) -> {
+		BotonEditar.addActionListener((e) -> {
 			//DESCARGAR ARCHIVO EN...
-			JOptionPane.showMessageDialog(null, "Descargando dieta");
+			JOptionPane.showMessageDialog(null, "Editando dieta");
 		});
 		
-		BotonDescargar.setOpaque(true);
+		BotonEditar.setOpaque(true);
 		
-		return BotonDescargar;
+		return BotonEditar;
 	}
 	
 	@Override

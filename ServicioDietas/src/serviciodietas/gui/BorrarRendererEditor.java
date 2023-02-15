@@ -15,44 +15,43 @@ import javax.swing.table.TableCellRenderer;
 
 import serviciodietas.data.Cliente;
 
-
-public class DescargarRendererEditor extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
+public class BorrarRendererEditor extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 	
 	private static final long serialVersionUID = 1L;
 
 	private Cliente cliente;
 	private VentanaPrincipal mainWindow;
 	
-	public DescargarRendererEditor(VentanaPrincipal mainWindow) {
+	public BorrarRendererEditor(VentanaPrincipal mainWindow) {
 		this.mainWindow = mainWindow;
 	}
 	
 	private JButton prepare(JTable table, Object value, boolean isSelected, int row, int column) {
 		cliente = (Cliente) value;
 		
-		JButton BotonDescargar = new JButton("");
+		JButton BotonBorrar = new JButton("");
 
-		BotonDescargar.setEnabled(true);
-		BotonDescargar.setToolTipText(String.format("Descargar dieta de - %s", cliente.getNombreC()));				
-		BotonDescargar.setBackground(table.getBackground());
+		BotonBorrar.setEnabled(true);
+		BotonBorrar.setToolTipText(String.format("Borrar cliente: - %s", cliente.getNombreC()));				
+		BotonBorrar.setBackground(table.getBackground());
 		
-		ImageIcon imagenDescargar =  new ImageIcon("resources/iconoDescargar.png");
+		ImageIcon imagenDescargar =  new ImageIcon("resources/iconoBorrar.png");
 		Icon i= new ImageIcon(imagenDescargar.getImage().getScaledInstance(28, 28, Image.SCALE_SMOOTH));
 		
-		BotonDescargar.setIcon(i);
+		BotonBorrar.setIcon(i);
 		
 		if (isSelected) {
-			BotonDescargar.setBackground(table.getSelectionBackground());
+			BotonBorrar.setBackground(table.getSelectionBackground());
 		}
 		
-		BotonDescargar.addActionListener((e) -> {
+		BotonBorrar.addActionListener((e) -> {
 			//DESCARGAR ARCHIVO EN...
-			JOptionPane.showMessageDialog(null, "Descargando dieta");
+			JOptionPane.showMessageDialog(null, "Borrando Cliente");
 		});
 		
-		BotonDescargar.setOpaque(true);
+		BotonBorrar.setOpaque(true);
 		
-		return BotonDescargar;
+		return BotonBorrar;
 	}
 	
 	@Override

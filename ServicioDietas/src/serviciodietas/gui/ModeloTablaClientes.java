@@ -17,9 +17,11 @@ private static final long serialVersionUID = 1L;
 
 	private List<Cliente> clientes;
 	private final List<String> headers = Arrays.asList(
-			"NOMBRE", 
-			"EDITAR", 
-			"DESCARGAR");
+			"CLIENTE", 
+			"DOWN",
+			"EDIT",
+			"DEL"
+			);
 	
 	public ModeloTablaClientes(List<Cliente> clientes) {
 		super();
@@ -47,7 +49,7 @@ private static final long serialVersionUID = 1L;
 	
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return (columnIndex == 1 && columnIndex == 2);
+        return (columnIndex == 1 && columnIndex == 2 && columnIndex == 3);
     }
     
     @Override
@@ -60,6 +62,9 @@ private static final long serialVersionUID = 1L;
 		
 		switch (columnIndex) {
 			case 0: return cliente.getNombreC();
+			case 1: return cliente;
+			case 2: return cliente;
+			case 3: return cliente;
 			default: return null;
 		}
 	}

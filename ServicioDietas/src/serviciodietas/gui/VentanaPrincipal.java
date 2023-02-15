@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
-
+import javax.swing.table.TableCellEditor;
 
 import javax.swing.JTable;
 
@@ -22,6 +22,12 @@ import serviciodietas.data.*;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.CellEditor;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class VentanaPrincipal extends JFrame {
 	
@@ -30,6 +36,7 @@ public class VentanaPrincipal extends JFrame {
 	private List<Cliente> clientes = new ArrayList<>();
 	
 	Cliente cliente1 = new Cliente("Jon Lasa");
+	Cliente cliente2 = new Cliente("Ane Lasa");
 	
 	private JPanel contentPane;
 	private JTable tablaClientes = new JTable();
@@ -41,6 +48,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public void inicializar(){
+		
 		//DEFINIR VENTANA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 450);
@@ -52,6 +60,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		//INICIALIZAR DATOS A LIST-CLIENTES
 		clientes.add(cliente1);
+		clientes.add(cliente2);
 		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -69,14 +78,31 @@ public class VentanaPrincipal extends JFrame {
 		panelTabla.setBounds(51, 75, 574, 292);
 		panelTabla.setLayout(new BorderLayout());
 		
+		//CAMBIOS DE ANCHURA
+		tablaClientes.getColumnModel().getColumn(0).setMinWidth(95);
+		tablaClientes.getColumnModel().getColumn(1).setMaxWidth(55);
+		tablaClientes.getColumnModel().getColumn(2).setMaxWidth(55);
+		tablaClientes.getColumnModel().getColumn(3).setMaxWidth(55);
+		
+		//AÑADIR EDITORES DE LAS CELDAS
+		tablaClientes.getColumnModel().getColumn(1).setCellRenderer(new DescargarRendererEditor(this));
+		tablaClientes.getColumnModel().getColumn(1).setCellEditor(new DescargarRendererEditor(this));
+		
+		tablaClientes.getColumnModel().getColumn(2).setCellRenderer(new EditarRendererEditor(this));
+		tablaClientes.getColumnModel().getColumn(2).setCellEditor(new EditarRendererEditor(this));
+		
+		tablaClientes.getColumnModel().getColumn(3).setCellRenderer(new BorrarRendererEditor(this));
+		tablaClientes.getColumnModel().getColumn(3).setCellEditor(new BorrarRendererEditor(this));
+		
 		panelTabla.add(tablaClientes);
 		
+		//AÑADIR COMPONENTES
 		JScrollPane scroll = new JScrollPane(tablaClientes,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		panelTabla.add(scroll, BorderLayout.CENTER);
 		contentPane.add(panelTabla);
 		
 		JPanel panelFiltro = new JPanel();
-		panelFiltro.setBounds(339, 34, 282, 30);
+		panelFiltro.setBounds(51, 34, 282, 30);
 		contentPane.add(panelFiltro);
 		
 		JLabel LabelInfo = new JLabel("Buscar Cliente:");
@@ -84,6 +110,17 @@ public class VentanaPrincipal extends JFrame {
 		panelFiltro.add(LabelInfo);
 		
 		panelFiltro.add(filtroNombre);
-
+		
+		JButton BotonActualizar = new JButton("");
+		BotonActualizar.setBackground(Color.WHITE);
+		BotonActualizar.setBounds(592, 34, 33, 30);
+		
+		ImageIcon imagenActualizar =  new ImageIcon("resources/iconoActualizar.png");
+		Icon i= new ImageIcon(imagenActualizar.getImage().getScaledInstance(BotonActualizar.getWidth(), BotonActualizar.getHeight(), Image.SCALE_SMOOTH));
+		
+		BotonActualizar.setIcon(i);
+		contentPane.add(BotonActualizar);
+		
+		
 	}
 }
