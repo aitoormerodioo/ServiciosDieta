@@ -37,10 +37,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private List<Cliente> clientes = new ArrayList<>();
-	
-	Cliente cliente1 = new Cliente("JON LASA");
-	Cliente cliente2 = new Cliente("MAR MUJICA");
+	public static List<Cliente> clientes = new ArrayList<>();
 	
 	private JPanel contentPane;
 	private JTable tablaClientes = new JTable();
@@ -64,8 +61,7 @@ public class VentanaPrincipal extends JFrame {
 		setLocationRelativeTo(null);
 		
 		//INICIALIZAR DATOS A LIST-CLIENTES
-		clientes.add(cliente1);
-		clientes.add(cliente2);
+		clientes = serviciodieta.persistencia.ServicioFicheros.cargarClientes();
 		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

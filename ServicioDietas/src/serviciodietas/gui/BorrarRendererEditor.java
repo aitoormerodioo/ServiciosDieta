@@ -46,7 +46,8 @@ public class BorrarRendererEditor extends AbstractCellEditor implements TableCel
 		
 		BotonBorrar.addActionListener((e) -> {
 			//DESCARGAR ARCHIVO EN...
-			JOptionPane.showMessageDialog(null, "Borrando Cliente");
+			BorrarDialog dialog = new BorrarDialog(cliente);
+			
 		});
 		
 		BotonBorrar.setOpaque(true);
