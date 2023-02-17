@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellEditor;
-
+import javax.swing.table.TableRowSorter;
 import javax.swing.JTable;
 
 import java.awt.BorderLayout;
@@ -21,8 +21,12 @@ import java.awt.Color;
 import serviciodietas.data.*;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
+
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.CellEditor;
 import javax.swing.Icon;
@@ -35,12 +39,13 @@ public class VentanaPrincipal extends JFrame {
 	
 	private List<Cliente> clientes = new ArrayList<>();
 	
-	Cliente cliente1 = new Cliente("Jon Lasa");
-	Cliente cliente2 = new Cliente("Ane Lasa");
+	Cliente cliente1 = new Cliente("JON LASA");
+	Cliente cliente2 = new Cliente("MAR MUJICA");
 	
 	private JPanel contentPane;
 	private JTable tablaClientes = new JTable();
 	JTextField filtroNombre;
+	private TableRowSorter filtro;
 
 	public VentanaPrincipal() {
 		inicializar();
@@ -121,6 +126,25 @@ public class VentanaPrincipal extends JFrame {
 		BotonActualizar.setIcon(i);
 		contentPane.add(BotonActualizar);
 		
+		//AÑADIR FILTRO
+		filtroNombre.addKeyListener(new KeyAdapter() {
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String cadena = filtroNombre.getText().toUpperCase();
+				filtroNombre.setText(cadena);
+				filtro();
+			}
+		});
+		
+		filtro = new TableRowSorter(tablaClientes.getModel());
+		tablaClientes.setRowSorter(filtro);
+	}
+	
+	//FUNCIONES DEL FILTRO	
+	public void filtro() {
+		int columnaTabla = 0;
+		filtro.setRowFilter(RowFilter.regexFilter(filtroNombre.getText(), columnaTabla));
 		
 	}
 }

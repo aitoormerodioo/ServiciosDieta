@@ -49,7 +49,7 @@ private static final long serialVersionUID = 1L;
 	
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return (columnIndex == 1 && columnIndex == 2 && columnIndex == 3);
+        return (columnIndex >= headers.size()-3);
     }
     
     @Override
