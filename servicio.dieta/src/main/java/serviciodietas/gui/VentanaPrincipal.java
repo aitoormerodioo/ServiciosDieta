@@ -14,6 +14,19 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableRowSorter;
 
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.services.drive.Drive;
+import com.google.api.services.drive.model.File;
+import com.google.api.services.drive.model.FileList;
+import com.google.api.services.sheets.v4.Sheets;
+import com.google.api.services.sheets.v4.model.ValueRange;
+
+import serviciodieta.persistencia.SpreadSheets;
+
 import javax.swing.JTable;
 
 import java.awt.BorderLayout;
@@ -28,6 +41,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 
 import javax.swing.CellEditor;
 import javax.swing.Icon;
@@ -45,12 +60,14 @@ public class VentanaPrincipal extends JFrame {
 	JTextField filtroNombre;
 	private TableRowSorter filtro;
 
-	public VentanaPrincipal() {
+	private static final String SPREADSHEET_ID = "1Hgng61re-cVHEy_RF8v83v5256myqRRplYjn-RtNA7s/edit#gid=395051145";
+	
+	public VentanaPrincipal() throws IOException, GeneralSecurityException {
 		inicializar();
 		
 	}
 	
-	public void inicializar(){
+	public void inicializar() throws IOException, GeneralSecurityException{
 		
 		//DEFINIR VENTANA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -136,6 +153,52 @@ public class VentanaPrincipal extends JFrame {
 		
 		filtro = new TableRowSorter(tablaClientes.getModel());
 		tablaClientes.setRowSorter(filtro);
+
+		//CREAMOS EL SERVICIO SHEETS
+		
+//		GoogleCredential credential = new GoogleCredential().setAccessToken("AIzaSyCRwqPVRkXlRHV8MQKBjiYUzkUtrLtiOfA");
+//		
+//		Sheets service = new Sheets.Builder(GoogleNetHttpTransport.newTrustedTransport(), JacksonFactory.getDefaultInstance(), credential)
+//		        .setApplicationName("LECTOR GOOGLE SHEET")
+//		        .build();
+//		
+//		String range = "clientes!A2:U3"; // por ejemplo "Sheet1!A1:B2"
+//		ValueRange response = service.spreadsheets().values()
+//		        .get(SPREADSHEET_ID, range)
+//		        .execute();
+//		List<List<Object>> values = response.getValues();
+//		if (values == null || values.isEmpty()) {
+//		    System.out.println("No data found.");
+//		} else {
+//		    for (List<Object> row : values) {
+//		        System.out.printf("%s, %s\n", row.get(0), row.get(1));
+//		    }
+//		}
+		
+//		ValueRange response = sheet.spreadsheets().values().get(SPREADSHEET_ID, range).execute();
+//		
+//		List<List<Object>> values = response.getValues();
+//		if (values == null || values.isEmpty()) {
+//			System.out.println("No data found");
+//		} else {
+//			for (List row : values) {
+//				System.out.println(String.format("%s y %s\n", row.get(0), row.get(1)));
+//			}
+//		}
+		
+
+        // Read the data from the specified range
+//        ValueRange response = sheet.spreadsheets().values().get(SPREADSHEET_ID, range).execute();
+//        List<List<Object>> values = response.getValues();
+//        if (values == null || values.isEmpty()) {
+//            System.out.println("No data found.");
+//        } else {
+//            System.out.println("Data:");
+//            for (List<Object> row : values) {
+//                System.out.printf("%s, %s\n", row.get(0), row.get(1));
+//            }
+//        }
+//		Drive drive = serviciodieta.persistencia.Drive.getDriveService();
 		
 	}
 	

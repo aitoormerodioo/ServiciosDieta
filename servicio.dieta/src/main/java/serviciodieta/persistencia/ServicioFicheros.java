@@ -12,8 +12,6 @@ import serviciodietas.data.Cliente;
 public class ServicioFicheros {
 	
 	
-	
-	
 	public static List<Cliente> cargarClientes(){
 		
 		List<Cliente> listaClientes = new ArrayList<>();
