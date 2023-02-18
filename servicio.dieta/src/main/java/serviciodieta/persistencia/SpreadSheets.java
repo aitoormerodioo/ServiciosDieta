@@ -1,5 +1,7 @@
 package serviciodieta.persistencia;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,13 +27,15 @@ public class SpreadSheets {
 	
 	private static Sheets sheetsService;
 	private static String APPLICATION_NAME = "Google Sheets";
-	private static final List<String> scopes= Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
 	
 	private static Credential authorize() throws IOException, GeneralSecurityException {
-		InputStream in = SpreadSheets.class.getResourceAsStream("/credentials3.json");
+	
+		InputStream in = SpreadSheets.class.getResourceAsStream("/credentials.json");
 		GoogleClientSecrets clienteSecret = GoogleClientSecrets.load(
 				JacksonFactory.getDefaultInstance(), new InputStreamReader(in));
 	
+	List<String> scopes = Arrays.asList(SheetsScopes.SPREADSHEETS);
+		
 	GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
 			GoogleNetHttpTransport.newTrustedTransport(), JacksonFactory.getDefaultInstance(), clienteSecret, scopes)
 			.setDataStoreFactory(new FileDataStoreFactory(new java.io.File("tokens")))

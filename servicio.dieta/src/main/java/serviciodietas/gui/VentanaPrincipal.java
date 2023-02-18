@@ -60,7 +60,7 @@ public class VentanaPrincipal extends JFrame {
 	JTextField filtroNombre;
 	private TableRowSorter filtro;
 
-	private static final String SPREADSHEET_ID = "1Hgng61re-cVHEy_RF8v83v5256myqRRplYjn-RtNA7s/edit#gid=395051145";
+	private static final String SPREADSHEET_ID = "1Hgng61re-cVHEy_RF8v83v5256myqRRplYjn-RtNA7s";
 	
 	public VentanaPrincipal() throws IOException, GeneralSecurityException {
 		inicializar();
@@ -154,50 +154,24 @@ public class VentanaPrincipal extends JFrame {
 		filtro = new TableRowSorter(tablaClientes.getModel());
 		tablaClientes.setRowSorter(filtro);
 
-		//CREAMOS EL SERVICIO SHEETS
+		//CREAMOS EL SERVICIO SHEETS PARA CARGAR DATOS
 		
-//		GoogleCredential credential = new GoogleCredential().setAccessToken("AIzaSyCRwqPVRkXlRHV8MQKBjiYUzkUtrLtiOfA");
-//		
-//		Sheets service = new Sheets.Builder(GoogleNetHttpTransport.newTrustedTransport(), JacksonFactory.getDefaultInstance(), credential)
-//		        .setApplicationName("LECTOR GOOGLE SHEET")
-//		        .build();
-//		
-//		String range = "clientes!A2:U3"; // por ejemplo "Sheet1!A1:B2"
-//		ValueRange response = service.spreadsheets().values()
-//		        .get(SPREADSHEET_ID, range)
-//		        .execute();
-//		List<List<Object>> values = response.getValues();
-//		if (values == null || values.isEmpty()) {
-//		    System.out.println("No data found.");
-//		} else {
-//		    for (List<Object> row : values) {
-//		        System.out.printf("%s, %s\n", row.get(0), row.get(1));
-//		    }
-//		}
-		
-//		ValueRange response = sheet.spreadsheets().values().get(SPREADSHEET_ID, range).execute();
-//		
-//		List<List<Object>> values = response.getValues();
-//		if (values == null || values.isEmpty()) {
-//			System.out.println("No data found");
-//		} else {
-//			for (List row : values) {
-//				System.out.println(String.format("%s y %s\n", row.get(0), row.get(1)));
-//			}
-//		}
-		
+		Sheets servicio = serviciodieta.persistencia.SpreadSheets.getSheetsService();
 
-        // Read the data from the specified range
-//        ValueRange response = sheet.spreadsheets().values().get(SPREADSHEET_ID, range).execute();
-//        List<List<Object>> values = response.getValues();
-//        if (values == null || values.isEmpty()) {
-//            System.out.println("No data found.");
-//        } else {
-//            System.out.println("Data:");
-//            for (List<Object> row : values) {
-//                System.out.printf("%s, %s\n", row.get(0), row.get(1));
-//            }
-//        }
+		String range = "clientes!A2:B3"; // por ejemplo "Sheet1!A1:B2"
+		ValueRange response = servicio.spreadsheets().values()
+		        .get(SPREADSHEET_ID, range)
+		        .execute();
+		List<List<Object>> values = response.getValues();
+		if (values == null || values.isEmpty()) {
+		    System.out.println("No data found.");
+		} else {
+		    for (List<Object> row : values) {
+		        System.out.printf("%s, %s\n", row.get(0), row.get(1));
+		    }
+		}
+		
+		//CREAMOS EL SERVICIO DRIVE
 //		Drive drive = serviciodieta.persistencia.Drive.getDriveService();
 		
 	}
