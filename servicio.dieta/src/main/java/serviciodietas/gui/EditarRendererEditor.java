@@ -45,8 +45,10 @@ public class EditarRendererEditor extends AbstractCellEditor implements TableCel
 		}
 		
 		BotonEditar.addActionListener((e) -> {
-			//DESCARGAR ARCHIVO EN...
-			JOptionPane.showMessageDialog(null, "Editando dieta");
+			
+			VentanaEditar ve = new VentanaEditar(cliente);
+			ve.setVisible(true);
+			
 		});
 		
 		BotonEditar.setOpaque(true);

@@ -2,6 +2,7 @@ package serviciodietas.gui;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.naming.InitialContext;
@@ -60,7 +61,7 @@ public class VentanaPrincipal extends JFrame {
 	JTextField filtroNombre;
 	private TableRowSorter filtro;
 
-	private static final String SPREADSHEET_ID = "1Hgng61re-cVHEy_RF8v83v5256myqRRplYjn-RtNA7s";
+
 	
 	public VentanaPrincipal() throws IOException, GeneralSecurityException {
 		inicializar();
@@ -79,8 +80,8 @@ public class VentanaPrincipal extends JFrame {
 		setLocationRelativeTo(null);
 		
 		//INICIALIZAR DATOS A LIST-CLIENTES
-		clientes = serviciodieta.persistencia.ServicioFicheros.cargarClientes();
-		
+		clientes = serviciodieta.persistencia.ServicioSpreadSheets.cargarClientes();
+
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -101,7 +102,6 @@ public class VentanaPrincipal extends JFrame {
 		tablaClientes.getColumnModel().getColumn(0).setMinWidth(95);
 		tablaClientes.getColumnModel().getColumn(1).setMaxWidth(55);
 		tablaClientes.getColumnModel().getColumn(2).setMaxWidth(55);
-		tablaClientes.getColumnModel().getColumn(3).setMaxWidth(55);
 		
 		//AÑADIR EDITORES DE LAS CELDAS
 		tablaClientes.getColumnModel().getColumn(1).setCellRenderer(new DescargarRendererEditor(this));
@@ -109,9 +109,6 @@ public class VentanaPrincipal extends JFrame {
 		
 		tablaClientes.getColumnModel().getColumn(2).setCellRenderer(new EditarRendererEditor(this));
 		tablaClientes.getColumnModel().getColumn(2).setCellEditor(new EditarRendererEditor(this));
-		
-		tablaClientes.getColumnModel().getColumn(3).setCellRenderer(new BorrarRendererEditor(this));
-		tablaClientes.getColumnModel().getColumn(3).setCellEditor(new BorrarRendererEditor(this));
 		
 		panelTabla.add(tablaClientes);
 		
@@ -153,33 +150,13 @@ public class VentanaPrincipal extends JFrame {
 		
 		filtro = new TableRowSorter(tablaClientes.getModel());
 		tablaClientes.setRowSorter(filtro);
-
-		//CREAMOS EL SERVICIO SHEETS PARA CARGAR DATOS
-		
-		Sheets servicio = serviciodieta.persistencia.SpreadSheets.getSheetsService();
-
-		String range = "clientes!A2:B3"; // por ejemplo "Sheet1!A1:B2"
-		ValueRange response = servicio.spreadsheets().values()
-		        .get(SPREADSHEET_ID, range)
-		        .execute();
-		List<List<Object>> values = response.getValues();
-		if (values == null || values.isEmpty()) {
-		    System.out.println("No data found.");
-		} else {
-		    for (List<Object> row : values) {
-		        System.out.printf("%s, %s\n", row.get(0), row.get(1));
-		    }
-		}
 		
 		//CREAMOS EL SERVICIO DRIVE
 //		Drive drive = serviciodieta.persistencia.Drive.getDriveService();
 		
 	}
 	
-	public static void actualizarTabla() {
-		clientes = serviciodieta.persistencia.ServicioFicheros.cargarClientes();
-		tablaClientes.setModel(new ModeloTablaClientes(clientes));
-	}
+
 	
 	//FUNCIONES DEL FILTRO	
 	public void filtro() {

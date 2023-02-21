@@ -19,8 +19,7 @@ private static final long serialVersionUID = 1L;
 	private final List<String> headers = Arrays.asList(
 			"CLIENTE", 
 			"DOWN",
-			"EDIT",
-			"DEL"
+			"EDIT"
 			);
 	
 	public ModeloTablaClientes(List<Cliente> clientes) {
@@ -61,10 +60,9 @@ private static final long serialVersionUID = 1L;
 		Cliente cliente = clientes.get(rowIndex);
 		
 		switch (columnIndex) {
-			case 0: return cliente.getNombreC();
+			case 0: return cliente.getNombreC().toUpperCase();
 			case 1: return cliente;
 			case 2: return cliente;
-			case 3: return cliente;
 			default: return null;
 		}
 	}

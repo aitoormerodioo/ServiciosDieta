@@ -47,7 +47,8 @@ public class DescargarRendererEditor extends AbstractCellEditor implements Table
 		
 		BotonDescargar.addActionListener((e) -> {
 			//DESCARGAR ARCHIVO EN...
-			JOptionPane.showMessageDialog(null, "Descargando dieta");
+			JOptionPane.showMessageDialog(null, "Descargando archivos");
+			//descargarDieta()
 		});
 		
 		BotonDescargar.setOpaque(true);
