@@ -90,9 +90,9 @@ public class ServicioSpreadSheets {
 				listaClientes.add(cliente);
 		}
 		
-//		for (Cliente c : listaClientes) {
-//			System.out.println(c.toString());
-//		}
+		for (Cliente c : listaClientes) {
+			System.out.println(c.toString());
+		}
 		return listaClientes;
 	}
 }

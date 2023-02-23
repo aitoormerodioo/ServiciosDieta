@@ -8,12 +8,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import serviciodietas.data.Cliente;
+import serviciodietas.data.Nivel;
+import serviciodietas.data.Objetivo;
+import serviciodietas.data.Peso;
+import serviciodietas.data.Sexo;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JCheckBox;
 import java.awt.SystemColor;
 import java.awt.Font;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -30,6 +36,7 @@ public class VentanaEditar extends JFrame {
 		
 		//DEFINIR VENTANA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("Datos del cliente");
 		setBounds(100, 100, 700, 450);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
@@ -91,7 +98,7 @@ public class VentanaEditar extends JFrame {
 		contentPane.add(rdbtnM);
 		
 		JRadioButton rdbtnH = new JRadioButton("HOMBRE");
-		rdbtnH.setBounds(166, 65, 68, 23);
+		rdbtnH.setBounds(166, 65, 85, 23);
 		contentPane.add(rdbtnH);
 		
 		JLabel lblPeso = new JLabel("PESO:");
@@ -228,7 +235,120 @@ public class VentanaEditar extends JFrame {
 		contentPane.add(rdbtnDefinicion);
 		
 		JRadioButton rdbtnSuperavit = new JRadioButton("SUPERAVIT");
-		rdbtnSuperavit.setBounds(209, 217, 89, 23);
+		rdbtnSuperavit.setBounds(209, 217, 96, 23);
 		contentPane.add(rdbtnSuperavit);
+		
+		
+		//POR DEFECTO LOS DATOS DE LOS CLIENTES ESTARAN SELECCIONADOS
+		if (cliente.getSexo().equals(Sexo.hombre)) {
+			rdbtnH.setSelected(true);
+		} else {
+			rdbtnM.setSelected(true);
+		}
+		
+		if (cliente.getPeso().equals(Peso.menos70)) {
+			rdbtnmenos70.setSelected(true);
+		} else if (cliente.getPeso().equals(Peso.mas90)) {
+			rdbtnMas.setSelected(true);
+		} else {
+			rdbtnEntre.setSelected(true);
+		}
+		
+		comboBoxDIAS.addItem("2");
+		comboBoxDIAS.addItem("3");
+		comboBoxDIAS.addItem("4");
+		comboBoxDIAS.addItem("5");
+		comboBoxDIAS.addItem("6");
+		
+		if (cliente.getDiasentreno() == 2) {
+			comboBoxDIAS.setSelectedIndex(0);
+		} else if (cliente.getDiasentreno() == 3) {
+			comboBoxDIAS.setSelectedIndex(1);
+		} else if (cliente.getDiasentreno() == 4){
+			comboBoxDIAS.setSelectedIndex(2);
+		} else if (cliente.getDiasentreno() == 5){
+			comboBoxDIAS.setSelectedIndex(3);
+		} else {
+			comboBoxDIAS.setSelectedIndex(4);
+		}
+		
+		if (cliente.getObjetivo().equals(Objetivo.definicion)) {
+			rdbtnDefinicion.setSelected(true);
+		} else {
+			rdbtnSuperavit.setSelected(true);
+		}
+		
+		if (cliente.getNivel().equals(Nivel.principiante)) {
+			rdbtnPRINCIPIANTE.setSelected(true);
+		} else if (cliente.getNivel().equals(Nivel.intermedio)) {
+			rdbtnINTERMEDIO.setSelected(true);
+		} else {
+			rdbtnAvanzado.setSelected(true);
+		}
+		
+		if (cliente.getNogustos().contains("NINGUNA")) {
+			chckbxNINGUNA.setSelected(true);
+		}  
+		
+		if (cliente.getNogustos().contains("Aguacate")) {
+			chckbxAGUACATE.setSelected(true);
+		}  
+		
+		if (cliente.getNogustos().contains("Claras")) {
+			chckbxCLARAS.setSelected(true);
+		}  
+		
+		if (cliente.getNogustos().contains("Lactosa")) {
+			chckbxLactosa.setSelected(true);
+		}  
+		
+		if (cliente.getNogustos().contains("Frutos secos")) {
+			chckbxFRUTOSSECOS.setSelected(true);
+		}  
+		
+		if (cliente.getNogustos().contains("Gluten")) {
+			chckbxGLUTEN.setSelected(true);
+		} 
+		
+		if (cliente.getNogustos().contains("Huevos")) {
+			chckbxHUEVOS.setSelected(true);
+		} 
+		
+		if (cliente.getNogustos().contains("Verdura")) {
+			chckbxVerdura.setSelected(true);
+		} 
+		
+		if (cliente.getNogustos().contains("Pescado")) {
+			chckbxPescado.setSelected(true);
+		} 
+		
+		if (cliente.getNogustos().contains("Soy Vegan@")) {
+			chckbxVegan.setSelected(true);
+		} 
+		
+		if (cliente.getNogustos().contains("Soy Vegetarian@")) {
+			chckbxVegetarian.setSelected(true);
+		}
+		
+		
+		//CONDICIONES PARA QUE SOLO ESTE UN RADIO BUTTON SELECCIONADO - CREACION DE GRUPOS
+		ButtonGroup grupoSexo = new ButtonGroup();
+		grupoSexo.add(rdbtnH);
+		grupoSexo.add(rdbtnM);
+		
+		ButtonGroup grupoPeso = new ButtonGroup();
+		grupoPeso.add(rdbtnMas);
+		grupoPeso.add(rdbtnEntre);
+		grupoPeso.add(rdbtnmenos70);
+		
+		ButtonGroup grupoObjetivo = new ButtonGroup();
+		grupoObjetivo.add(rdbtnSuperavit);
+		grupoObjetivo.add(rdbtnDefinicion);
+		
+		ButtonGroup grupoNivel = new ButtonGroup();
+		grupoNivel.add(rdbtnPRINCIPIANTE);
+		grupoNivel.add(rdbtnINTERMEDIO);
+		grupoNivel.add(rdbtnAvanzado);
+		
 	}
 }

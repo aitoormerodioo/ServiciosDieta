@@ -72,6 +72,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		//DEFINIR VENTANA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("Servicio Nutrinafit");
 		setBounds(100, 100, 700, 450);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
