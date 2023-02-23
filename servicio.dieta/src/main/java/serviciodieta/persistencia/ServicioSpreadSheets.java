@@ -20,12 +20,14 @@ public class ServicioSpreadSheets {
 	
 	private static final String SPREADSHEET_ID = "1Hgng61re-cVHEy_RF8v83v5256myqRRplYjn-RtNA7s";
 	
+	private static Sheets servicio;
+	
 	public static List<Cliente> cargarClientes() throws GeneralSecurityException, IOException{
 		
 		List<Cliente> listaClientes = new ArrayList<>();
 		
 		//CREAMOS EL SERVICIO SHEETS PARA CARGAR DATOS
-		Sheets servicio = serviciodieta.persistencia.SpreadSheets.getSheetsService();
+		servicio = serviciodieta.persistencia.SpreadSheets.getSheetsService();
 		
 		int numRows = servicio.spreadsheets().values()
                 .get(SPREADSHEET_ID, "clientes")
@@ -94,5 +96,17 @@ public class ServicioSpreadSheets {
 			System.out.println(c.toString());
 		}
 		return listaClientes;
+	}
+	
+	public static void modificarCliente(String nombreC, String sexo, String noGustos, int diasentreno, int mesesentrenados, String nivel, String lesion, String objetivo) throws IOException, GeneralSecurityException {
+		
+		//CREAMOS EL SERVICIO SHEETS PARA CARGAR DATOS
+		servicio = serviciodieta.persistencia.SpreadSheets.getSheetsService();
+		
+		int numRows = servicio.spreadsheets().values()
+                .get(SPREADSHEET_ID, "clientes")
+                .execute()
+                .getValues()
+                .size();
 	}
 }
