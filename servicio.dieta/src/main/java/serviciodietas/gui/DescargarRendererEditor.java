@@ -2,6 +2,8 @@ package serviciodietas.gui;
 
 import java.awt.Component;
 import java.awt.Image;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.EventObject;
 
 import javax.swing.AbstractCellEditor;
@@ -48,7 +50,15 @@ public class DescargarRendererEditor extends AbstractCellEditor implements Table
 		BotonDescargar.addActionListener((e) -> {
 			//DESCARGAR ARCHIVO EN...
 			JOptionPane.showMessageDialog(null, "Descargando archivos");
-			//descargarDieta()
+			try {
+				serviciodieta.persistencia.ServicioDrive.descargarArchivos(cliente);
+			} catch (GeneralSecurityException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		});
 		
 		BotonDescargar.setOpaque(true);

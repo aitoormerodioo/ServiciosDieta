@@ -1,8 +1,10 @@
 package serviciodieta.persistencia;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.List;
@@ -19,8 +21,12 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
+import com.google.api.services.drive.model.File;
+import com.google.api.services.drive.model.FileList;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
+
+import serviciodietas.data.Cliente;
 
 public class ServicioDrive {
 	
@@ -29,7 +35,7 @@ public class ServicioDrive {
 	
 	
 	private static Credential authorize() throws IOException, GeneralSecurityException {
-		InputStream in = SpreadSheets.class.getResourceAsStream("/credentials.json");
+		InputStream in = Drive.class.getResourceAsStream("/credentials2.json");
 		GoogleClientSecrets clienteSecret = GoogleClientSecrets.load(
 				JacksonFactory.getDefaultInstance(), new InputStreamReader(in));
 	
@@ -37,7 +43,7 @@ public class ServicioDrive {
 	
 	GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
 			GoogleNetHttpTransport.newTrustedTransport(), JacksonFactory.getDefaultInstance(), clienteSecret, scopes)
-			.setDataStoreFactory(new FileDataStoreFactory(new java.io.File("tokens")))
+			.setDataStoreFactory(new FileDataStoreFactory(new java.io.File("tokens2")))
 			.setAccessType("offline")
 			.build();
 	
@@ -47,12 +53,38 @@ public class ServicioDrive {
 	
 	}
 	
-	public static Drive getSheetsService() throws GeneralSecurityException, IOException {
+	public static Drive getDriveService() throws GeneralSecurityException, IOException {
 		
 		Credential credencial = authorize();
 		
 		return new Drive.Builder(GoogleNetHttpTransport.newTrustedTransport(), JacksonFactory.getDefaultInstance(), credencial).setApplicationName(APPLICATION_NAME).build();
 		
+	}
+	
+	public static void descargarArchivos(Cliente cliente) throws GeneralSecurityException, IOException {
+		
+		Drive drive = serviciodieta.persistencia.ServicioDrive.getDriveService();
+		
+		String folderId = "1CRP-rOzCNro8Bg0wHLHx5fJ9gS6j3SQI";
+		
+		System.out.println(drive.getApplicationName());
+		
+		
+
+		// Descargar cada archivo y guardarlo en la carpeta local
+		String localFolderPath = "C:\\ArchivosClientes"+cliente.getNombreC();
+		java.io.File localFolder = new java.io.File(localFolderPath);
+//		for (File file : fileList) {
+//		    // Crear un archivo local con el mismo nombre que el archivo de Google Drive
+//		    java.io.File localFile = new java.io.File(localFolderPath + java.io.File.separator + );
+//		    OutputStream outputStream = new FileOutputStream(localFile);
+//
+//		    // Descargar el archivo de Google Drive y escribir los datos en el archivo local
+//		    drive.files().get(file.getId())
+//		            .executeMediaAndDownloadTo(outputStream);
+//
+//		    outputStream.close();
+//		}
 	}
 }
 

@@ -110,18 +110,128 @@ public class VentanaEditar extends JFrame {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				//RECOGEMOS LOS DATOS MODIFICADOS
 				String nombreC = cliente.getNombreC();
 				
-				String sexo = "";
+				String sexo;
 				
-				if (rdbtnM.getSelectedObjects().equals("MUJER")) {
+				if (rdbtnM.isSelected()) {
+					sexo = "MUJER";
+				} else {
+					sexo = "HOMBRE";
+				}
+				
+				int peso;
+				
+				if (rdbtnmenos70.isSelected()) {
+					peso= 65;
+				} else if (rdbtnEntre.isSelected()) {
+					peso = 80;
+				} else {
+					peso = 95;
+				}
+				
+				int diasentreno= Integer.parseInt(comboBoxDIAS.getSelectedItem().toString());
+				
+				int mesesentrenados = Integer.parseInt(comboBoxMESES.getSelectedItem().toString());
+				
+				String objetivo;
+				
+				if (rdbtnDefinicion.isSelected()) {
+					objetivo = "Pérdida de grasa";
+				} else {
+					objetivo = "Ganancia de músculo (sin grasa)";
+				}
 					
-				}
-				if (rdbtnH.getSelectedObjects().equals("HOMBRE")) {
-				 
+				String nivel; 
+				
+				if (rdbtnPRINCIPIANTE.isSelected()) {
+					nivel = "Principiante (0-1 años entrenando)";
+				} else if (rdbtnINTERMEDIO.isSelected()) {
+					nivel = "Intermedio (1-3 años entrenando)";
+				} else {
+					nivel = "Avanzado (+3 años entrenando)";
 				}
 				
-//				modificarCliente(nombreC, )
+				String lesiones;
+				
+				if (rdbtnHombro.isSelected()) {
+					lesiones = "HOMBRO (rotadores, me impide hacer ciertos ejercicios)";
+				} else if (rdbtnLumbar.isSelected()) {
+					lesiones = "LUMBAR (me impide hacer ciertos ejercicios)";
+				} else if (rdbtnRodilla.isSelected()){
+					lesiones = "RODILLA (me impide hacer ciertos ejercicios)";
+				} else {
+					lesiones = "NINGUNA";
+				}
+				
+				String nogustos = "";
+				
+				if (chckbxNINGUNA.isSelected()) {
+					nogustos=nogustos+"NINGUNA, ";
+				}  
+				
+				if (chckbxAGUACATE.isSelected()) {
+					nogustos=nogustos+"Aguacate, ";
+				}  
+				
+				if (chckbxCLARAS.isSelected()) {
+					nogustos=nogustos+"Claras, ";
+				}  
+				
+				if (chckbxLactosa.isSelected()) {
+					nogustos=nogustos+"Lactosa, ";
+				}  
+				
+				if (chckbxFRUTOSSECOS.isSelected()) {
+					nogustos=nogustos+"Frutos secos, ";
+				}  
+				
+				if (chckbxGLUTEN.isSelected()) {
+					nogustos=nogustos+"Gluten, ";
+				} 
+				
+				if (chckbxHUEVOS.isSelected()) {
+					nogustos=nogustos+"Huevos, ";
+				} 
+				
+				if (chckbxVerdura.isSelected()) {
+					nogustos=nogustos+"Verdura, ";
+				} 
+				
+				if (chckbxPescado.isSelected()) {
+					nogustos=nogustos+"Pescado, ";
+				} 
+				
+				if (chckbxVegan.isSelected()) {
+					nogustos=nogustos+"Soy Vegan@, ";
+				} 
+				
+				if (chckbxVegetarian.isSelected()) {
+					nogustos=nogustos+"Soy Vegetarian@, ";
+				}
+				
+				try {
+					serviciodieta.persistencia.ServicioSpreadSheets.modificarCliente(nombreC,sexo,peso,nogustos,diasentreno,mesesentrenados,nivel,lesiones,objetivo);
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				} catch (GeneralSecurityException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				
+				try {
+					VentanaPrincipal vp = new VentanaPrincipal();
+					vp.setVisible(true);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (GeneralSecurityException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		btnConfirmar.setBounds(542, 377, 102, 23);

@@ -128,15 +128,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		panelFiltro.add(filtroNombre);
 		
-		JButton BotonActualizar = new JButton("");
-		BotonActualizar.setBackground(Color.WHITE);
-		BotonActualizar.setBounds(592, 34, 33, 30);
-		
 		ImageIcon imagenActualizar =  new ImageIcon("resources/iconoActualizar.png");
-		Icon i= new ImageIcon(imagenActualizar.getImage().getScaledInstance(BotonActualizar.getWidth(), BotonActualizar.getHeight(), Image.SCALE_SMOOTH));
-		
-		BotonActualizar.setIcon(i);
-		contentPane.add(BotonActualizar);
 		
 		//AÑADIR FILTRO
 		filtroNombre.addKeyListener(new KeyAdapter() {
@@ -152,8 +144,7 @@ public class VentanaPrincipal extends JFrame {
 		filtro = new TableRowSorter(tablaClientes.getModel());
 		tablaClientes.setRowSorter(filtro);
 		
-		//CREAMOS EL SERVICIO DRIVE
-//		Drive drive = serviciodieta.persistencia.Drive.getDriveService();
+		
 		
 	}
 	

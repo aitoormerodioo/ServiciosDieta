@@ -3,9 +3,11 @@ package serviciodieta.persistencia;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.api.services.sheets.v4.Sheets;
+import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
 import serviciodietas.data.Cliente;
@@ -21,6 +23,7 @@ public class ServicioSpreadSheets {
 	private static final String SPREADSHEET_ID = "1Hgng61re-cVHEy_RF8v83v5256myqRRplYjn-RtNA7s";
 	
 	private static Sheets servicio;
+	
 	
 	public static List<Cliente> cargarClientes() throws GeneralSecurityException, IOException{
 		
@@ -98,7 +101,7 @@ public class ServicioSpreadSheets {
 		return listaClientes;
 	}
 	
-	public static void modificarCliente(String nombreC, String sexo, String noGustos, int diasentreno, int mesesentrenados, String nivel, String lesion, String objetivo) throws IOException, GeneralSecurityException {
+	public static void modificarCliente(String nombreC, String sexo, int peso, String noGustos, int diasentreno, int mesesentrenados, String nivel, String lesion, String objetivo) throws IOException, GeneralSecurityException {
 		
 		//CREAMOS EL SERVICIO SHEETS PARA CARGAR DATOS
 		servicio = serviciodieta.persistencia.SpreadSheets.getSheetsService();
@@ -108,5 +111,47 @@ public class ServicioSpreadSheets {
                 .execute()
                 .getValues()
                 .size();
+
+		ValueRange result = servicio.spreadsheets().values()
+		    .get(SPREADSHEET_ID, "clientes")
+		    .execute();
+
+		List<List<Object>> values = result.getValues();
+		
+		
+		//BUSCAMOS EL INDICE DE LA FILA A MODIFICAR
+		int filam = -1;
+		
+		for (int i = 1; i < numRows; i++) {    // EMPEZAMOS CONTANDO DESDE LA SEGUNDA FILA
+			List<Object> row = values.get(i);
+		    if (nombreC.contains(row.get(0).toString()) && nombreC.contains(row.get(1).toString())) {
+		        filam = i+1;
+		        break;
+		    }
+		}
+		
+		List<Object> newValues = Arrays.asList(null, null, null, null, null, null, peso, null, objetivo, noGustos, null, null, null, nivel, diasentreno, lesion, null, null, null, null, mesesentrenados, sexo, null, null, null);
+		
+		String range = "clientes!A"+filam+":X"+filam;
+		
+		ValueRange response = servicio.spreadsheets().values()
+			    .get(SPREADSHEET_ID, range)
+			    .execute();
+		List<List<Object>> currentValues = response.getValues();
+		List<Object> rowValues = currentValues.get(0); // asumimos que solo hay una fila de valores
+		for (int i = 0; i < newValues.size(); i++) {
+		    if (newValues.get(i) != null) {
+		        rowValues.set(i, newValues.get(i));
+		    }
+		}
+		
+		//ACTUALIZAMOS PAGINA
+		ValueRange body = new ValueRange().setValues(currentValues);
+		UpdateValuesResponse resultado = servicio.spreadsheets().values()
+		    .update(SPREADSHEET_ID, range, body)
+		    .setValueInputOption("USER_ENTERED")
+		    .execute();
+		
+		
 	}
 }
