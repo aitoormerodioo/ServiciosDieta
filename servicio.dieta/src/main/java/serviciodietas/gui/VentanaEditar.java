@@ -407,7 +407,7 @@ public class VentanaEditar extends JFrame {
 		comboBoxDIAS.addItem("3");
 		comboBoxDIAS.addItem("4");
 		comboBoxDIAS.addItem("5");
-		comboBoxDIAS.addItem("6");
+
 		
 		if (cliente.getDiasentreno() == 2) {
 			comboBoxDIAS.setSelectedIndex(0);
@@ -415,12 +415,10 @@ public class VentanaEditar extends JFrame {
 			comboBoxDIAS.setSelectedIndex(1);
 		} else if (cliente.getDiasentreno() == 4){
 			comboBoxDIAS.setSelectedIndex(2);
-		} else if (cliente.getDiasentreno() == 5){
-			comboBoxDIAS.setSelectedIndex(3);
 		} else {
-			comboBoxDIAS.setSelectedIndex(4);
+			comboBoxDIAS.setSelectedIndex(3);
 		}
-		
+			
 		if (cliente.getObjetivo().equals(Objetivo.definicion)) {
 			rdbtnDefinicion.setSelected(true);
 		} else {
