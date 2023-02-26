@@ -554,5 +554,15 @@ public class VentanaEditar extends JFrame {
 		grupoLesiones.add(rdbtnLumbar);
 		grupoLesiones.add(rdbtnNinguna);
 		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 248, 220));
+		panel.setBounds(10, 11, 314, 355);
+		contentPane.add(panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 248, 220));
+		panel_1.setBounds(334, 11, 340, 355);
+		contentPane.add(panel_1);
+		
 	}
 }
