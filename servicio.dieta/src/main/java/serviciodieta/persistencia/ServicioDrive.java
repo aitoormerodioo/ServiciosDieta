@@ -342,7 +342,7 @@ public class ServicioDrive {
 			query = "mimeType='application/vnd.openxmlformats-officedocument.wordprocessingml.document' and '" + folderIdDie + "' in parents";
 		}
 		
-		Files.List request1 = drive.files().list().setQ(query);
+		Files.List request1 = drive.files().list().setQ(query).setOrderBy("title asc");
 		
 		int archivosD;
 		if (cliente.getObjetivo().equals(Objetivo.definicion)) {
@@ -352,31 +352,13 @@ public class ServicioDrive {
 				archivosD=cliente.getMesesentrenados();
 			}
 		} else {
-			if (cliente.getMesesentrenados()>5) {
+			if (cliente.getMesesentrenados()>3) {
 				archivosD=0;
 			} else {
 				archivosD=cliente.getMesesentrenados();
 			}
 		}
 		
-//		
-//		if (cliente.getMesesentrenados()==12) {
-//			archivosD=12;
-//		} else {
-//			archivosD=12-cliente.getMesesentrenados();
-//		}
-		
-//		try {
-//		for (File archivo : request1.getItems()) {
-//		    if (contador >= archivosD) {
-//		        break;
-//		    }
-//		    descargarArchivo(drive, archivo.getId(), archivo.getTitle());
-//		    contador++;
-//			}
-//		} catch (Exception e) {
-//			JOptionPane.showMessageDialog(null, "El archivo de dieta existe.", "Error", JOptionPane.ERROR_MESSAGE);
-//		}
 		
 		try {
 			for (File file : request1.execute().getItems()) {
