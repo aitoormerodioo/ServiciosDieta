@@ -49,6 +49,7 @@ import javax.swing.CellEditor;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 public class VentanaPrincipal extends JFrame {
 	
@@ -86,9 +87,6 @@ public class VentanaPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		filtroNombre = new JTextField();
-		filtroNombre.setColumns(15);
-		
 		tablaClientes.setRowHeight(30);
 		tablaClientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		((DefaultTableCellRenderer) tablaClientes.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
@@ -118,17 +116,26 @@ public class VentanaPrincipal extends JFrame {
 		panelTabla.add(scroll, BorderLayout.CENTER);
 		contentPane.add(panelTabla);
 		
-		JPanel panelFiltro = new JPanel();
-		panelFiltro.setBounds(51, 34, 282, 30);
-		contentPane.add(panelFiltro);
-		
-		JLabel LabelInfo = new JLabel("Buscar Cliente:");
-		LabelInfo.setFont(new Font("Sitka Small", Font.PLAIN, 12));
-		panelFiltro.add(LabelInfo);
-		
-		panelFiltro.add(filtroNombre);
-		
 		ImageIcon imagenActualizar =  new ImageIcon(getClass().getResource("/iconoActualizar.png"));
+		
+		filtro = new TableRowSorter(tablaClientes.getModel());
+		tablaClientes.setRowSorter(filtro);
+		
+		filtroNombre = new JTextField();
+		filtroNombre.setBounds(134, 39, 176, 26);
+		contentPane.add(filtroNombre);
+		filtroNombre.setColumns(15);
+		
+		JLabel lblNewLabel = new JLabel("Buscar:");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblNewLabel.setBounds(56, 39, 68, 25);
+		contentPane.add(lblNewLabel);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 228, 181));
+		panel.setBounds(51, 33, 282, 38);
+		contentPane.add(panel);
 		
 		//AÑADIR FILTRO
 		filtroNombre.addKeyListener(new KeyAdapter() {
@@ -140,9 +147,6 @@ public class VentanaPrincipal extends JFrame {
 				filtro();
 			}
 		});
-		
-		filtro = new TableRowSorter(tablaClientes.getModel());
-		tablaClientes.setRowSorter(filtro);
 		
 		
 		
