@@ -35,7 +35,7 @@ public class EditarRendererEditor extends AbstractCellEditor implements TableCel
 		BotonEditar.setToolTipText(String.format("Editar dieta de - %s", cliente.getNombreC()));				
 		BotonEditar.setBackground(table.getBackground());
 		
-		ImageIcon imagenDescargar =  new ImageIcon("resources/iconoEditar.png");
+		ImageIcon imagenDescargar =  new ImageIcon(getClass().getResource("/iconoEditar.png"));
 		Icon i= new ImageIcon(imagenDescargar.getImage().getScaledInstance(28, 28, Image.SCALE_SMOOTH));
 		
 		BotonEditar.setIcon(i);

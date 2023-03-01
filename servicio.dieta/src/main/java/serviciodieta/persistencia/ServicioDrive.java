@@ -10,6 +10,7 @@ import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import com.google.api.client.auth.oauth2.Credential;
@@ -75,6 +76,16 @@ public class ServicioDrive {
 		Drive drive = serviciodieta.persistencia.ServicioDrive.getDriveService();
 		
 		String clienteN= cliente.getNombreC().replaceAll("\\s+", "");
+		
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Seleccione la carpeta de descarga");
+		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		int option = fileChooser.showOpenDialog(null);
+		
+		java.io.File selectedFolder = null;
+		if (option == JFileChooser.APPROVE_OPTION) {
+		    selectedFolder = fileChooser.getSelectedFile();
+		}
 		
 		//PRIMERO DESCARGAMOS LAS DIETAS
 		String folderIdDie = "";
@@ -322,7 +333,7 @@ public class ServicioDrive {
 			}
 		}
 		
-		java.io.File destinationFolderA = new java.io.File("C:\\ArchivosClientes"+clienteN+"Dieta");
+		java.io.File destinationFolderA = new java.io.File(selectedFolder.getAbsolutePath() + "/ArchivosClientes"+clienteN+"Dieta");
 		if (!destinationFolderA.exists()) {
 		    destinationFolderA.mkdirs();
 		}
@@ -645,7 +656,8 @@ public class ServicioDrive {
 		}
 		
 		
-		java.io.File destinationFolderD = new java.io.File("C:\\ArchivosClientes"+clienteN+"Entr");
+		
+		java.io.File destinationFolderD = new java.io.File(selectedFolder.getAbsolutePath() + "/ArchivosClientes"+clienteN+"Entr");
 		if (!destinationFolderD.exists()) {
 		    destinationFolderD.mkdirs();
 		}

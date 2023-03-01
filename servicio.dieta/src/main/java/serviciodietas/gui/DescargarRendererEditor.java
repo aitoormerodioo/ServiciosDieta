@@ -38,7 +38,7 @@ public class DescargarRendererEditor extends AbstractCellEditor implements Table
 		BotonDescargar.setToolTipText(String.format("Descargar dieta de - %s", cliente.getNombreC()));				
 		BotonDescargar.setBackground(table.getBackground());
 		
-		ImageIcon imagenDescargar =  new ImageIcon("resources/iconoDescargar.png");
+		ImageIcon imagenDescargar =  new ImageIcon(getClass().getResource("/iconoDescargar.png"));
 		Icon i= new ImageIcon(imagenDescargar.getImage().getScaledInstance(28, 28, Image.SCALE_SMOOTH));
 		
 		BotonDescargar.setIcon(i);

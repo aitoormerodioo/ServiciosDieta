@@ -77,7 +77,7 @@ public class VentanaEditar extends JFrame {
 		
 		JLabel labelNombre = new JLabel("");
 		labelNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		labelNombre.setForeground(SystemColor.activeCaption);
+		labelNombre.setForeground(new Color(0, 0, 255));
 		labelNombre.setBounds(21, 11, 309, 42);
 		
 		
@@ -243,11 +243,11 @@ public class VentanaEditar extends JFrame {
 		contentPane.add(lblSexo);
 		
 		rdbtnM = new JRadioButton("MUJER");
-		rdbtnM.setBounds(82, 65, 68, 23);
+		rdbtnM.setBounds(66, 65, 84, 23);
 		contentPane.add(rdbtnM);
 		
 		rdbtnH = new JRadioButton("HOMBRE");
-		rdbtnH.setBounds(166, 65, 85, 23);
+		rdbtnH.setBounds(166, 65, 89, 23);
 		contentPane.add(rdbtnH);
 		
 		JLabel lblPeso = new JLabel("PESO:");
@@ -256,15 +256,15 @@ public class VentanaEditar extends JFrame {
 		contentPane.add(lblPeso);
 		
 		rdbtnmenos70 = new JRadioButton("-70KG");
-		rdbtnmenos70.setBounds(67, 123, 62, 23);
+		rdbtnmenos70.setBounds(67, 123, 76, 23);
 		contentPane.add(rdbtnmenos70);
 		
 		rdbtnEntre = new JRadioButton("70-90KG");
-		rdbtnEntre.setBounds(144, 123, 76, 23);
+		rdbtnEntre.setBounds(144, 123, 84, 23);
 		contentPane.add(rdbtnEntre);
 		
 		rdbtnMas = new JRadioButton("+90KG");
-		rdbtnMas.setBounds(230, 123, 68, 23);
+		rdbtnMas.setBounds(230, 123, 75, 23);
 		contentPane.add(rdbtnMas);
 		
 		JLabel lblnogustos = new JLabel("INTOLERANCIAS/NO GUSTOS:");
@@ -273,47 +273,47 @@ public class VentanaEditar extends JFrame {
 		contentPane.add(lblnogustos);
 		
 		chckbxNINGUNA = new JCheckBox("NINGUNA");
-		chckbxNINGUNA.setBounds(343, 55, 82, 23);
+		chckbxNINGUNA.setBounds(343, 55, 97, 23);
 		contentPane.add(chckbxNINGUNA);
 		
 		chckbxCLARAS = new JCheckBox("CLARAS");
-		chckbxCLARAS.setBounds(437, 55, 76, 23);
+		chckbxCLARAS.setBounds(451, 55, 89, 23);
 		contentPane.add(chckbxCLARAS);
 		
 		chckbxAGUACATE = new JCheckBox("AGUACATE");
-		chckbxAGUACATE.setBounds(527, 55, 89, 23);
+		chckbxAGUACATE.setBounds(542, 55, 119, 23);
 		contentPane.add(chckbxAGUACATE);
 		
 		chckbxFRUTOSSECOS = new JCheckBox("FRUTOS SECOS");
-		chckbxFRUTOSSECOS.setBounds(343, 88, 117, 23);
+		chckbxFRUTOSSECOS.setBounds(343, 88, 131, 23);
 		contentPane.add(chckbxFRUTOSSECOS);
 		
 		chckbxGLUTEN = new JCheckBox("GLUTEN");
-		chckbxGLUTEN.setBounds(468, 88, 82, 23);
+		chckbxGLUTEN.setBounds(476, 88, 84, 23);
 		contentPane.add(chckbxGLUTEN);
 		
 		chckbxHUEVOS = new JCheckBox("HUEVOS");
-		chckbxHUEVOS.setBounds(554, 88, 76, 23);
+		chckbxHUEVOS.setBounds(572, 88, 89, 23);
 		contentPane.add(chckbxHUEVOS);
 		
 		chckbxLactosa = new JCheckBox("LACTOSA");
-		chckbxLactosa.setBounds(343, 123, 82, 23);
+		chckbxLactosa.setBounds(343, 123, 97, 23);
 		contentPane.add(chckbxLactosa);
 		
 		chckbxVerdura = new JCheckBox("VERDURA");
-		chckbxVerdura.setBounds(431, 123, 82, 23);
+		chckbxVerdura.setBounds(457, 123, 89, 23);
 		contentPane.add(chckbxVerdura);
 		
 		chckbxPescado = new JCheckBox("PESCADO");
-		chckbxPescado.setBounds(522, 123, 82, 23);
+		chckbxPescado.setBounds(559, 123, 102, 23);
 		contentPane.add(chckbxPescado);
 		
 		chckbxVegetarian = new JCheckBox("VEGETARIAN@");
-		chckbxVegetarian.setBounds(343, 157, 117, 23);
+		chckbxVegetarian.setBounds(343, 157, 131, 23);
 		contentPane.add(chckbxVegetarian);
 		
 		chckbxVegan = new JCheckBox("VEGAN@");
-		chckbxVegan.setBounds(468, 157, 117, 23);
+		chckbxVegan.setBounds(487, 157, 133, 23);
 		contentPane.add(chckbxVegan);
 		
 		JLabel lblDiasEntreno = new JLabel("DIAS DE ENTRENO:");
@@ -332,15 +332,15 @@ public class VentanaEditar extends JFrame {
 		contentPane.add(lblNivel);
 		
 		rdbtnPRINCIPIANTE = new JRadioButton("PRINCIPIANTE");
-		rdbtnPRINCIPIANTE.setBounds(67, 271, 109, 23);
+		rdbtnPRINCIPIANTE.setBounds(67, 271, 125, 23);
 		contentPane.add(rdbtnPRINCIPIANTE);
 		
 		rdbtnINTERMEDIO = new JRadioButton("INTERMEDIO");
-		rdbtnINTERMEDIO.setBounds(67, 297, 109, 23);
+		rdbtnINTERMEDIO.setBounds(67, 297, 125, 23);
 		contentPane.add(rdbtnINTERMEDIO);
 		
 		rdbtnAvanzado = new JRadioButton("AVANZADO");
-		rdbtnAvanzado.setBounds(67, 323, 109, 23);
+		rdbtnAvanzado.setBounds(67, 323, 125, 23);
 		contentPane.add(rdbtnAvanzado);
 		
 		JLabel lblLesiones = new JLabel("LESIONES:");
@@ -359,19 +359,19 @@ public class VentanaEditar extends JFrame {
 		contentPane.add(comboBoxMESES);
 		
 		rdbtnNinguna = new JRadioButton("NINGUNA");
-		rdbtnNinguna.setBounds(417, 256, 109, 23);
+		rdbtnNinguna.setBounds(417, 256, 117, 23);
 		contentPane.add(rdbtnNinguna);
 		
 		rdbtnHombro = new JRadioButton("HOMBRO");
-		rdbtnHombro.setBounds(417, 282, 109, 23);
+		rdbtnHombro.setBounds(417, 282, 117, 23);
 		contentPane.add(rdbtnHombro);
 		
 		rdbtnLumbar = new JRadioButton("LUMBAR");
-		rdbtnLumbar.setBounds(417, 308, 109, 23);
+		rdbtnLumbar.setBounds(417, 308, 117, 23);
 		contentPane.add(rdbtnLumbar);
 		
 		rdbtnRodilla = new JRadioButton("RODILLA");
-		rdbtnRodilla.setBounds(417, 334, 109, 23);
+		rdbtnRodilla.setBounds(417, 334, 117, 23);
 		contentPane.add(rdbtnRodilla);
 		
 		JLabel lblObjetivo = new JLabel("OBJETIVO:");
@@ -380,11 +380,11 @@ public class VentanaEditar extends JFrame {
 		contentPane.add(lblObjetivo);
 		
 		rdbtnDefinicion = new JRadioButton("DEFINICION");
-		rdbtnDefinicion.setBounds(103, 217, 89, 23);
+		rdbtnDefinicion.setBounds(95, 217, 102, 23);
 		contentPane.add(rdbtnDefinicion);
 		
 		rdbtnSuperavit = new JRadioButton("SUPERAVIT");
-		rdbtnSuperavit.setBounds(209, 217, 96, 23);
+		rdbtnSuperavit.setBounds(209, 217, 102, 23);
 		contentPane.add(rdbtnSuperavit);
 		
 		

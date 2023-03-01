@@ -128,7 +128,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		panelFiltro.add(filtroNombre);
 		
-		ImageIcon imagenActualizar =  new ImageIcon("resources/iconoActualizar.png");
+		ImageIcon imagenActualizar =  new ImageIcon(getClass().getResource("/iconoActualizar.png"));
 		
 		//AÑADIR FILTRO
 		filtroNombre.addKeyListener(new KeyAdapter() {
