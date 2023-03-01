@@ -564,5 +564,16 @@ public class VentanaEditar extends JFrame {
 		panel_1.setBounds(334, 11, 340, 355);
 		contentPane.add(panel_1);
 		
+		JLabel lblInfoT = new JLabel("Contacto:");
+		lblInfoT.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblInfoT.setBounds(344, 381, 62, 14);
+		contentPane.add(lblInfoT);
+		
+		JLabel lblNumeroT = new JLabel(cliente.getNumeroT());
+		lblNumeroT.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNumeroT.setBounds(403, 379, 110, 18);
+		contentPane.add(lblNumeroT);
+		
+		
 	}
 }

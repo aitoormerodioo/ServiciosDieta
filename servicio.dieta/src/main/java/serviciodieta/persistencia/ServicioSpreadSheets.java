@@ -46,7 +46,10 @@ public class ServicioSpreadSheets {
 		List<List<Object>> values = response.getValues();
 		
 		for (List<Object> row : values) {
+			
 				String nombreC = String.format("%s %s", row.get(0), row.get(1));
+				
+				String numeroT = "+"+row.get(2);
 				
 				Sexo sexo= Sexo.hombre;
 
@@ -90,7 +93,7 @@ public class ServicioSpreadSheets {
 					objetivo = Objetivo.volumen;
 				}	
 					
-				Cliente cliente = new Cliente(nombreC, sexo, peso, noGustos, diasentreno, mesesentrenados, nivel, lesion, objetivo);
+				Cliente cliente = new Cliente(nombreC, numeroT, sexo, peso, noGustos, diasentreno, mesesentrenados, nivel, lesion, objetivo);
 				   
 				listaClientes.add(cliente);
 		}

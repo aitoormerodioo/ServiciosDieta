@@ -3,6 +3,7 @@ package serviciodietas.data;
 public class Cliente {
 
 		private String nombreC;
+		private String numeroT;
 		private Sexo sexo;
 		private Peso peso;
 		private String nogustos;
@@ -13,10 +14,11 @@ public class Cliente {
 		private Objetivo objetivo;
 		
 		
-		public Cliente(String nombreC, Sexo sexo, Peso peso, String nogustos, int diasentreno, int mesesentrenados,
-				Nivel nivel, Lesion lesion, Objetivo objetivo) {
+		public Cliente(String nombreC, String numeroT, Sexo sexo, Peso peso, String nogustos, int diasentreno,
+				int mesesentrenados, Nivel nivel, Lesion lesion, Objetivo objetivo) {
 			super();
 			this.nombreC = nombreC;
+			this.numeroT = numeroT;
 			this.sexo = sexo;
 			this.peso = peso;
 			this.nogustos = nogustos;
@@ -35,6 +37,16 @@ public class Cliente {
 
 		public void setNombreC(String nombreC) {
 			this.nombreC = nombreC;
+		}
+
+
+		public String getNumeroT() {
+			return numeroT;
+		}
+
+
+		public void setNumeroT(String numeroT) {
+			this.numeroT = numeroT;
 		}
 
 
@@ -120,10 +132,13 @@ public class Cliente {
 
 		@Override
 		public String toString() {
-			return "Cliente [nombreC=" + nombreC + ", sexo=" + sexo + ", peso=" + peso + ", nogustos=" + nogustos
-					+ ", diasentreno=" + diasentreno + ", mesesentrenados=" + mesesentrenados + ", nivel=" + nivel
-					+ ", lesion=" + lesion + ", objetivo=" + objetivo + "]";
+			return "Cliente [nombreC=" + nombreC + ", numeroT=" + numeroT + ", sexo=" + sexo + ", peso=" + peso
+					+ ", nogustos=" + nogustos + ", diasentreno=" + diasentreno + ", mesesentrenados=" + mesesentrenados
+					+ ", nivel=" + nivel + ", lesion=" + lesion + ", objetivo=" + objetivo + "]";
 		}
+		
+		
+		
 		
 		
 		
