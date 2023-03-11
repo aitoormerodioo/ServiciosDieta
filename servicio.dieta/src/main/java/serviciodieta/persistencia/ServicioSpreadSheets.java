@@ -38,7 +38,7 @@ public class ServicioSpreadSheets {
                 .getValues()
                 .size();
 		
-		String range = "clientes!A2:V"+numRows; 
+		String range = "clientes!A2:X"+numRows; 
 		ValueRange response = servicio.spreadsheets().values()
 				        .get(SPREADSHEET_ID, range)
 				        .execute();
@@ -53,12 +53,12 @@ public class ServicioSpreadSheets {
 				
 				Sexo sexo= Sexo.hombre;
 
-				if (row.get(21).toString().equals("MUJER")) {
+				if (row.get(19).toString().equals("MUJER")) {
 					sexo= Sexo.mujer;
 				}
 				
 				Peso peso = Peso.menos70;
-				int kgs = Integer.parseInt(row.get(6).toString());
+				int kgs = Integer.parseInt(row.get(21).toString());
 				
 				if (kgs>=70 && kgs<=90) {
 					peso = Peso.entre70y90;
@@ -66,34 +66,41 @@ public class ServicioSpreadSheets {
 					peso = Peso.mas90;
 				}
 				
-				String noGustos = row.get(9).toString();
+				String noGustos = row.get(7).toString();
 				
-				int diasentreno = Integer.parseInt(row.get(14).toString());
+				int diasentreno = Integer.parseInt(row.get(12).toString());
 				
-				int mesesentrenados = Integer.parseInt(row.get(20).toString());
+				int mesesentrenados = Integer.parseInt(row.get(18).toString());
 				
 				Nivel nivel = Nivel.principiante;
-				if (row.get(13).toString().equals("Intermedio (1-3 años entrenando)")) {
+				if (row.get(11).toString().equals("Intermedio (1-3 años entrenando)")) {
 					nivel = Nivel.intermedio;
-				} else if (row.get(13).toString().equals("Avanzado (+3 años entrenando)")) {
+				} else if (row.get(11).toString().equals("Avanzado (+3 años entrenando)")) {
 					nivel = Nivel.avanzado;
 				}
 				
 				Lesion lesion = Lesion.ninguna;
-				if (row.get(15).toString().equals("HOMBRO (rotadores, me impide hacer ciertos ejercicios)")) {
+				if (row.get(13).toString().equals("HOMBRO (rotadores, me impide hacer ciertos ejercicios)")) {
 					lesion = Lesion.hombro;
-				} else if (row.get(15).toString().equals("LUMBAR (me impide hacer ciertos ejercicios)")) {
+				} else if (row.get(13).toString().equals("LUMBAR (me impide hacer ciertos ejercicios)")) {
 					lesion = Lesion.lumbar;
-				} else if (row.get(15).toString().equals("RODILLA (me impide hacer ciertos ejercicios)")) {
+				} else if (row.get(13).toString().equals("RODILLA (me impide hacer ciertos ejercicios)")) {
 					lesion = Lesion.rodilla;
 				}
 				
 				Objetivo objetivo = Objetivo.definicion;
-				if (row.get(8).toString().equals("Ganancia de músculo (sin grasa)")) {
+				if (row.get(6).toString().equals("Ganancia de músculo (sin grasa)")) {
 					objetivo = Objetivo.volumen;
 				}	
-					
-				Cliente cliente = new Cliente(nombreC, numeroT, sexo, peso, noGustos, diasentreno, mesesentrenados, nivel, lesion, objetivo);
+				
+				String entrenador;
+				if (row.get(17).toString().contains("%")) {
+					entrenador = "Sin asignar";
+				} else {
+					entrenador=row.get(17).toString();
+				}
+				
+				Cliente cliente = new Cliente(nombreC, numeroT, sexo, peso, noGustos, diasentreno, mesesentrenados, nivel, lesion, objetivo, entrenador);
 				   
 				listaClientes.add(cliente);
 		}
@@ -104,7 +111,7 @@ public class ServicioSpreadSheets {
 		return listaClientes;
 	}
 	
-	public static void modificarCliente(String nombreC, String sexo, int peso, String noGustos, int diasentreno, int mesesentrenados, String nivel, String lesion, String objetivo) throws IOException, GeneralSecurityException {
+	public static void modificarCliente(String nombreC, String sexo, int peso, String noGustos, int diasentreno, int mesesentrenados, String nivel, String lesion, String objetivo, String entrenador) throws IOException, GeneralSecurityException {
 		
 		//CREAMOS EL SERVICIO SHEETS PARA CARGAR DATOS
 		servicio = serviciodieta.persistencia.SpreadSheets.getSheetsService();
@@ -133,7 +140,7 @@ public class ServicioSpreadSheets {
 		    }
 		}
 		
-		List<Object> newValues = Arrays.asList(null, null, null, null, null, null, peso, null, objetivo, noGustos, null, null, null, nivel, diasentreno, lesion, null, null, null, null, mesesentrenados, sexo, null, null, null);
+		List<Object> newValues = Arrays.asList(null, null, null, null, null, null, objetivo, noGustos, null, null, null, nivel, diasentreno, lesion, null, null, null, entrenador, mesesentrenados, sexo, null, peso, null, null);
 		
 		String range = "clientes!A"+filam+":X"+filam;
 		

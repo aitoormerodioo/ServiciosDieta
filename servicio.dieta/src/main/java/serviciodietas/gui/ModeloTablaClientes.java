@@ -18,6 +18,7 @@ private static final long serialVersionUID = 1L;
 	private List<Cliente> clientes;
 	private final List<String> headers = Arrays.asList(
 			"CLIENTE", 
+			"ENTR",
 			"DOWN",
 			"EDIT"
 			);
@@ -48,7 +49,7 @@ private static final long serialVersionUID = 1L;
 	
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return (columnIndex >= headers.size()-3);
+        return (columnIndex >= headers.size()-2);
     }
     
     @Override
@@ -61,8 +62,9 @@ private static final long serialVersionUID = 1L;
 		
 		switch (columnIndex) {
 			case 0: return cliente.getNombreC().toUpperCase();
-			case 1: return cliente;
+			case 1: return cliente.getEntrenador();
 			case 2: return cliente;
+			case 3: return cliente;
 			default: return null;
 		}
 	}

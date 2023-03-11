@@ -16,6 +16,7 @@ import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow.Builder;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -44,7 +45,41 @@ public class SpreadSheets {
 	
 	Credential credential = new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
 	
-	return credential;
+	String accessToken = credential.getAccessToken();
+	String refreshToken = credential.getRefreshToken();
+	
+	GoogleCredential googleCredential = new GoogleCredential.Builder()
+	        .setTransport(GoogleNetHttpTransport.newTrustedTransport())
+	        .setJsonFactory(JacksonFactory.getDefaultInstance())
+	        .setClientSecrets(clienteSecret)
+	        .build()
+	        .setAccessToken(accessToken)
+	        .setRefreshToken(refreshToken)
+	        .createScoped(scopes);
+//			.setRefreshListeners(new ArrayList<CredentialRefreshListener>() {
+//		@Override
+//		public void onTokenResponse(Credential credential, TokenResponse tokenResponse) throws IOException {
+//			// Actualizar los tokens de acceso y de actualización
+//			String accessToken = tokenResponse.getAccessToken();
+//			String refreshToken = tokenResponse.getRefreshToken();
+//			credential.setAccessToken(accessToken);
+//			credential.setRefreshToken(refreshToken);
+//		}
+//		
+//		@Override
+//		public void onTokenErrorResponse(Credential credential, TokenErrorResponse tokenErrorResponse) throws IOException {
+//			// Manejar el error de token
+//			throw new IOException("Error al actualizar el token de acceso: " + tokenErrorResponse.getErrorDescription());
+//		}
+//	})
+
+	// Configura la biblioteca de autenticación de Google para Java para renovar automáticamente el token de acceso
+	if (googleCredential.getExpiresInSeconds() != null && googleCredential.getExpiresInSeconds() <= 60) {
+        // If the access token has expired or will expire within 1 minute, then refresh it
+        googleCredential.refreshToken();
+    }
+	return googleCredential;
+	
 	
 	}
 	

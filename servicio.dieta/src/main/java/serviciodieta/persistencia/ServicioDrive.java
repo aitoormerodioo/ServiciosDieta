@@ -19,6 +19,7 @@ import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow.Builder;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -59,7 +60,24 @@ public class ServicioDrive {
 	
 	Credential credential = new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
 	
-	return credential;
+	String accessToken = credential.getAccessToken();
+	String refreshToken = credential.getRefreshToken();
+	
+	GoogleCredential googleCredential = new GoogleCredential.Builder()
+	        .setTransport(GoogleNetHttpTransport.newTrustedTransport())
+	        .setJsonFactory(JacksonFactory.getDefaultInstance())
+	        .setClientSecrets(clienteSecret)
+	        .build()
+	        .setAccessToken(accessToken)
+	        .setRefreshToken(refreshToken)
+	        .createScoped(scopes);
+	
+	if (googleCredential.getExpiresInSeconds() != null && googleCredential.getExpiresInSeconds() <= 60) {
+        // If the access token has expired or will expire within 1 minute, then refresh it
+        googleCredential.refreshToken();
+    }
+	return googleCredential;
+	
 	
 	}
 	
@@ -355,37 +373,51 @@ public class ServicioDrive {
 		
 		Files.List request1 = drive.files().list().setQ(query).setOrderBy("title asc");
 		
-		int archivosD;
+		int archivosDD;
 		if (cliente.getObjetivo().equals(Objetivo.definicion)) {
 			if (cliente.getMesesentrenados()==12) {
-				archivosD=0;
+				archivosDD=0;
 			} else {
-				archivosD=cliente.getMesesentrenados();
+				archivosDD=cliente.getMesesentrenados();
 			}
 		} else {
 			if (cliente.getMesesentrenados()>3) {
-				archivosD=0;
+				archivosDD=0;
 			} else {
-				archivosD=cliente.getMesesentrenados();
+				archivosDD=cliente.getMesesentrenados();
 			}
 		}
 		
-		
+		int ind = 1;
 		try {
 			for (File file : request1.execute().getItems()) {
 			
-			if (archivosD!=0) {
-				archivosD--;
+			if (archivosDD!=0) {
+				archivosDD--;
+				ind++;
 				continue;
 				
 			} else {
 			
 			String fileName = file.getTitle();
-		    OutputStream outputStream = new FileOutputStream(new java.io.File(destinationFolderA, fileName));
+			String cabezerafile;
+			String term;
+			if (cliente.getObjetivo().equals(Objetivo.definicion)) {
+				int cantidad = 4;
+			    cabezerafile = fileName.substring(0, fileName.length() - cantidad);
+			    term = ".pdf";
+			} else {
+				int cantidad = 5;
+			    cabezerafile = fileName.substring(0, fileName.length() - cantidad);
+			    term = ".docx";
+			}
+			
+			
+		    OutputStream outputStream = new FileOutputStream(new java.io.File(destinationFolderA, "Dieta Mes "+ind+" "+cliente.getNombreC()+term));
 		    drive.files().get(file.getId()).executeMediaAndDownloadTo(outputStream);
 		    outputStream.flush();
 		    outputStream.close();
-		   	
+		   	ind++;
 			}
 			}
 			} catch (Exception e) {
@@ -673,15 +705,25 @@ public class ServicioDrive {
 		String query1 = "mimeType='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' and '" + folderIdEntr + "' in parents";
 		Files.List request = drive.files().list().setQ(query1);
 		
+		int archivosD = cliente.getMesesentrenados();
+		
 		try {
 			for (File file : request.execute().getItems()) {
+			if (archivosD!=0) {
+				archivosD--;
+				continue;
+					
+			} else {
 		    String fileName = file.getTitle();
+		    int cantidad = 5;
+		    String cabezerafile = fileName.substring(0, fileName.length() - cantidad);
 		    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		    drive.files().get(file.getId()).executeMediaAndDownloadTo(outputStream);
 		    byte[] byteArray = outputStream.toByteArray();
-		    FileOutputStream fos = new FileOutputStream(new java.io.File(destinationFolderD, fileName));
+		    FileOutputStream fos = new FileOutputStream(new java.io.File(destinationFolderD, cabezerafile+" "+cliente.getNombreC()+".xlsx"));
 		    fos.write(byteArray);
 		    fos.close();
+			}
 		}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "El archivo de dieta existe.", "Error", JOptionPane.ERROR_MESSAGE);

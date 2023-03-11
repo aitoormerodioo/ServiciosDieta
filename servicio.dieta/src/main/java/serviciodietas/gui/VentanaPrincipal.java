@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableRowSorter;
 
+
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
@@ -98,17 +99,20 @@ public class VentanaPrincipal extends JFrame {
 		panelTabla.setLayout(new BorderLayout());
 		
 		//CAMBIOS DE ANCHURA
-		tablaClientes.getColumnModel().getColumn(0).setMinWidth(95);
-		tablaClientes.getColumnModel().getColumn(1).setMaxWidth(55);
+		tablaClientes.getColumnModel().getColumn(0).setMaxWidth(360);
+		tablaClientes.getColumnModel().getColumn(1).setMaxWidth(100);
 		tablaClientes.getColumnModel().getColumn(2).setMaxWidth(55);
+		tablaClientes.getColumnModel().getColumn(3).setMaxWidth(55);
 		
 		//AÑADIR EDITORES DE LAS CELDAS
-		tablaClientes.getColumnModel().getColumn(1).setCellRenderer(new DescargarRendererEditor(this));
-		tablaClientes.getColumnModel().getColumn(1).setCellEditor(new DescargarRendererEditor(this));
+		tablaClientes.getColumnModel().getColumn(2).setCellRenderer(new DescargarRendererEditor(this));
+		tablaClientes.getColumnModel().getColumn(2).setCellEditor(new DescargarRendererEditor(this));
 		
-		tablaClientes.getColumnModel().getColumn(2).setCellRenderer(new EditarRendererEditor(this));
-		tablaClientes.getColumnModel().getColumn(2).setCellEditor(new EditarRendererEditor(this));
+		tablaClientes.getColumnModel().getColumn(3).setCellRenderer(new EditarRendererEditor(this));
+		tablaClientes.getColumnModel().getColumn(3).setCellEditor(new EditarRendererEditor(this));
 		
+		tablaClientes.getColumnModel().getColumn(1).setCellRenderer(new RendererTablaClientes());
+        
 		panelTabla.add(tablaClientes);
 		
 		//AÑADIR COMPONENTES

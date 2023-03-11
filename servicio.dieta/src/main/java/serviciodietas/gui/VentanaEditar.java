@@ -28,6 +28,7 @@ import java.security.GeneralSecurityException;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 public class VentanaEditar extends JFrame {
 
@@ -59,6 +60,7 @@ public class VentanaEditar extends JFrame {
 	private JCheckBox chckbxAGUACATE;
 	private JCheckBox chckbxCLARAS;
 	private JCheckBox chckbxNINGUNA;
+	private JTextField textFieldEnt;
 
 	public VentanaEditar(Cliente cliente) {
 		
@@ -92,6 +94,7 @@ public class VentanaEditar extends JFrame {
 				VentanaPrincipal vp = null;
 				try {
 					vp = new VentanaPrincipal();
+					dispose();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -110,10 +113,13 @@ public class VentanaEditar extends JFrame {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				
 				//RECOGEMOS LOS DATOS MODIFICADOS
 				String nombreC = cliente.getNombreC();
 				
 				String sexo;
+				
+				String entrenador= textFieldEnt.getText();
 				
 				if (rdbtnM.isSelected()) {
 					sexo = "MUJER";
@@ -212,7 +218,7 @@ public class VentanaEditar extends JFrame {
 				}
 				
 				try {
-					serviciodieta.persistencia.ServicioSpreadSheets.modificarCliente(nombreC,sexo,peso,nogustos,diasentreno,mesesentrenados,nivel,lesiones,objetivo);
+					serviciodieta.persistencia.ServicioSpreadSheets.modificarCliente(nombreC,sexo,peso,nogustos,diasentreno,mesesentrenados,nivel,lesiones,objetivo,entrenador);
 				} catch (IOException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
@@ -231,6 +237,7 @@ public class VentanaEditar extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				dispose();
 				
 			}
 		});
@@ -556,13 +563,8 @@ public class VentanaEditar extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 248, 220));
-		panel.setBounds(10, 11, 314, 355);
+		panel.setBounds(0, 11, 324, 355);
 		contentPane.add(panel);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 248, 220));
-		panel_1.setBounds(334, 11, 340, 355);
-		contentPane.add(panel_1);
 		
 		JLabel lblInfoT = new JLabel("Contacto:");
 		lblInfoT.setFont(new Font("Tahoma", Font.ITALIC, 11));
@@ -573,6 +575,21 @@ public class VentanaEditar extends JFrame {
 		lblNumeroT.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNumeroT.setBounds(403, 379, 110, 18);
 		contentPane.add(lblNumeroT);
+		
+		JLabel lblEntrenador = new JLabel("ENTRENADOR:");
+		lblEntrenador.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblEntrenador.setBounds(552, 260, 109, 14);
+		contentPane.add(lblEntrenador);
+		
+		textFieldEnt = new JTextField(cliente.getEntrenador());
+		textFieldEnt.setBounds(542, 283, 132, 20);
+		contentPane.add(textFieldEnt);
+		textFieldEnt.setColumns(10);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 248, 220));
+		panel_1.setBounds(334, 11, 350, 355);
+		contentPane.add(panel_1);
 		
 		
 	}

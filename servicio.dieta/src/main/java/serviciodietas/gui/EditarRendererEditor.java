@@ -45,7 +45,7 @@ public class EditarRendererEditor extends AbstractCellEditor implements TableCel
 		}
 		
 		BotonEditar.addActionListener((e) -> {
-			
+			mainWindow.dispose();
 			VentanaEditar ve = new VentanaEditar(cliente);
 			ve.setVisible(true);
 			
