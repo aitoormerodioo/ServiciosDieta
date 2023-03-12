@@ -381,7 +381,7 @@ public class ServicioDrive {
 				archivosDD=cliente.getMesesentrenados();
 			}
 		} else {
-			if (cliente.getMesesentrenados()>3) {
+			if (cliente.getMesesentrenados()>5) {
 				archivosDD=0;
 			} else {
 				archivosDD=cliente.getMesesentrenados();
@@ -703,12 +703,19 @@ public class ServicioDrive {
 		}
 
 		String query1 = "mimeType='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' and '" + folderIdEntr + "' in parents";
-		Files.List request = drive.files().list().setQ(query1);
+//		Files.List request = drive.files().list().setQ(query1);
+		Files.List request2 = drive.files().list().setQ(query1).setOrderBy("title asc");
 		
-		int archivosD = cliente.getMesesentrenados();
+		int archivosD = 0;
+		
+//		if (cliente.getMesesentrenados()>11) {
+//			archivosD=0;
+//		} else {
+//			archivosD=cliente.getMesesentrenados();
+//		}
 		
 		try {
-			for (File file : request.execute().getItems()) {
+			for (File file : request2.execute().getItems()) {
 			if (archivosD!=0) {
 				archivosD--;
 				continue;

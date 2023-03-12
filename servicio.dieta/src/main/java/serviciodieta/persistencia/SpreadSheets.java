@@ -6,11 +6,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.auth.oauth2.CredentialRefreshListener;
+import com.google.api.client.auth.oauth2.TokenErrorResponse;
+import com.google.api.client.auth.oauth2.TokenResponse;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
@@ -56,22 +60,6 @@ public class SpreadSheets {
 	        .setAccessToken(accessToken)
 	        .setRefreshToken(refreshToken)
 	        .createScoped(scopes);
-//			.setRefreshListeners(new ArrayList<CredentialRefreshListener>() {
-//		@Override
-//		public void onTokenResponse(Credential credential, TokenResponse tokenResponse) throws IOException {
-//			// Actualizar los tokens de acceso y de actualización
-//			String accessToken = tokenResponse.getAccessToken();
-//			String refreshToken = tokenResponse.getRefreshToken();
-//			credential.setAccessToken(accessToken);
-//			credential.setRefreshToken(refreshToken);
-//		}
-//		
-//		@Override
-//		public void onTokenErrorResponse(Credential credential, TokenErrorResponse tokenErrorResponse) throws IOException {
-//			// Manejar el error de token
-//			throw new IOException("Error al actualizar el token de acceso: " + tokenErrorResponse.getErrorDescription());
-//		}
-//	})
 
 	// Configura la biblioteca de autenticación de Google para Java para renovar automáticamente el token de acceso
 	if (googleCredential.getExpiresInSeconds() != null && googleCredential.getExpiresInSeconds() <= 60) {

@@ -24,10 +24,10 @@ public class RendererTablaClientes implements TableCellRenderer{
 			label.setText(value.toString());
 			label.setHorizontalAlignment(JLabel.CENTER);
 			if (value.toString()=="Sin asignar") {
-				Font font = new Font("Arial", Font.ITALIC, 11);
+				Font font = new Font("Arial", Font.ITALIC, 10);
 	            label.setFont(font);
 			} else {
-				Font font = new Font("Arial", Font.PLAIN, 12);
+				Font font = new Font("Arial", Font.PLAIN, 11);
 	            label.setFont(font);
 			}
 			
