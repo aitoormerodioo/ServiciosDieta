@@ -56,13 +56,14 @@ public class SpreadSheets {
 	        .setTransport(GoogleNetHttpTransport.newTrustedTransport())
 	        .setJsonFactory(JacksonFactory.getDefaultInstance())
 	        .setClientSecrets(clienteSecret)
-	        .build()
-	        .setAccessToken(accessToken)
-	        .setRefreshToken(refreshToken)
-	        .createScoped(scopes);
+	        .build();
+	     
+    googleCredential.setAccessToken(accessToken);
+    googleCredential.setRefreshToken(refreshToken);
+	       
 
 	// Configura la biblioteca de autenticación de Google para Java para renovar automáticamente el token de acceso
-	if (googleCredential.getExpiresInSeconds() != null && googleCredential.getExpiresInSeconds() <= 60) {
+	if (googleCredential.getExpiresInSeconds() != null && googleCredential.getExpiresInSeconds() <= 0) {
         // If the access token has expired or will expire within 1 minute, then refresh it
         googleCredential.refreshToken();
     }
@@ -74,6 +75,8 @@ public class SpreadSheets {
 	public static Sheets getSheetsService() throws GeneralSecurityException, IOException {
 		
 		Credential credencial = authorize();
+		
+		credencial.refreshToken();
 		
 		return new Sheets.Builder(GoogleNetHttpTransport.newTrustedTransport(), JacksonFactory.getDefaultInstance(), credencial).setApplicationName(APPLICATION_NAME).build();
 		

@@ -111,7 +111,7 @@ public class ServicioSpreadSheets {
 		return listaClientes;
 	}
 	
-	public static void modificarCliente(String nombreC, String sexo, int peso, String noGustos, int diasentreno, int mesesentrenados, String nivel, String lesion, String objetivo, String entrenador) throws IOException, GeneralSecurityException {
+	public static void modificarCliente(String nombreC, String sexo, int peso, String noGustos, int diasentreno, int mesesentrenados, String nivel, String lesion, String objetivo, String entrenador, String numT) throws IOException, GeneralSecurityException {
 		
 		//CREAMOS EL SERVICIO SHEETS PARA CARGAR DATOS
 		servicio = serviciodieta.persistencia.SpreadSheets.getSheetsService();
@@ -134,7 +134,7 @@ public class ServicioSpreadSheets {
 		
 		for (int i = 1; i < numRows; i++) {    // EMPEZAMOS CONTANDO DESDE LA SEGUNDA FILA
 			List<Object> row = values.get(i);
-		    if (nombreC.contains(row.get(0).toString()) && nombreC.contains(row.get(1).toString())) {
+		    if (nombreC.contains(row.get(0).toString()) && numT.contains(row.get(2).toString())) {
 		        filam = i+1;
 		        break;
 		    }

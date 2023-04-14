@@ -61,12 +61,28 @@ private static final long serialVersionUID = 1L;
 		Cliente cliente = clientes.get(rowIndex);
 		
 		switch (columnIndex) {
-			case 0: return cliente.getNombreC().toUpperCase();
+			case 0: return transformName(cliente.getNombreC()).toUpperCase();
 			case 1: return cliente.getEntrenador();
 			case 2: return cliente;
 			case 3: return cliente;
 			default: return null;
 		}
+	}
+	
+	public static String transformName(String name) {
+		name = name.toLowerCase();
+		// Reemplazar tildes por vocales sin tilde
+	    name = name.replaceAll("[áäàâ]", "a");
+	    name = name.replaceAll("[éëèê]", "e");
+	    name = name.replaceAll("[íïìî]", "i");
+	    name = name.replaceAll("[óöòô]", "o");
+	    name = name.replaceAll("[úüùû]", "u");
+
+	    // Eliminar espacios innecesarios
+	    name = name.trim(); // Elimina los espacios al principio y al final
+	    name = name.replaceAll("\\s+", " "); // Reemplaza múltiples espacios por uno solo
+
+	    return name;
 	}
 	
 	

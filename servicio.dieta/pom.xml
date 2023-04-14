@@ -4,7 +4,7 @@
   <artifactId>servicio.dieta</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>ServicioDietas</name>
-  
+
   <dependencies>
   	<dependency>
   		<groupId>com.google.api-client</groupId>
@@ -26,6 +26,17 @@
   		<artifactId>google-api-services-sheets</artifactId>
   		<version>v4-rev516-1.23.0</version>
   	</dependency>
+  	<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>4.1.2</version>
+</dependency>
+<dependency>
+    <groupId>com.itextpdf</groupId>
+    <artifactId>itextpdf</artifactId>
+    <version>5.5.13</version>
+</dependency>
+
   </dependencies>
    <build>
   <plugins>

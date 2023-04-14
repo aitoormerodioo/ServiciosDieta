@@ -117,9 +117,11 @@ public class VentanaEditar extends JFrame {
 				//RECOGEMOS LOS DATOS MODIFICADOS
 				String nombreC = cliente.getNombreC();
 				
+				String numT = cliente.getNumeroT();
+				
 				String sexo;
 				
-				String entrenador= textFieldEnt.getText();
+				String entrenador= textFieldEnt.getText().toString();
 				
 				if (rdbtnM.isSelected()) {
 					sexo = "MUJER";
@@ -210,15 +212,15 @@ public class VentanaEditar extends JFrame {
 				} 
 				
 				if (chckbxVegan.isSelected()) {
-					nogustos=nogustos+"Soy Vegan@, ";
+					nogustos=nogustos+"Soy VEGAN@, ";
 				} 
 				
 				if (chckbxVegetarian.isSelected()) {
-					nogustos=nogustos+"Soy Vegetarian@, ";
+					nogustos=nogustos+"Soy VEGETARIAN@, ";
 				}
 				
 				try {
-					serviciodieta.persistencia.ServicioSpreadSheets.modificarCliente(nombreC,sexo,peso,nogustos,diasentreno,mesesentrenados,nivel,lesiones,objetivo,entrenador);
+					serviciodieta.persistencia.ServicioSpreadSheets.modificarCliente(nombreC,sexo,peso,nogustos,diasentreno,mesesentrenados,nivel,lesiones,objetivo,entrenador,numT);
 				} catch (IOException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
@@ -476,11 +478,11 @@ public class VentanaEditar extends JFrame {
 			chckbxPescado.setSelected(true);
 		} 
 		
-		if (cliente.getNogustos().contains("Soy Vegan@")) {
+		if (cliente.getNogustos().contains("Soy VEGAN@")) {
 			chckbxVegan.setSelected(true);
 		} 
 		
-		if (cliente.getNogustos().contains("Soy Vegetarian@")) {
+		if (cliente.getNogustos().contains("Soy VEGETARIAN@")) {
 			chckbxVegetarian.setSelected(true);
 		}
 		
@@ -584,7 +586,7 @@ public class VentanaEditar extends JFrame {
 		textFieldEnt = new JTextField(cliente.getEntrenador());
 		textFieldEnt.setBounds(542, 283, 132, 20);
 		contentPane.add(textFieldEnt);
-		textFieldEnt.setColumns(10);
+		
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 248, 220));
