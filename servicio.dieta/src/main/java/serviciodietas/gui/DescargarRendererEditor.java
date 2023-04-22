@@ -49,7 +49,6 @@ public class DescargarRendererEditor extends AbstractCellEditor implements Table
 		
 		BotonDescargar.addActionListener((e) -> {
 			//DESCARGAR ARCHIVO EN...
-			JOptionPane.showMessageDialog(null, "Descargando archivos");
 			try {
 				serviciodieta.persistencia.ServicioDrive.descargarArchivos(cliente);
 			} catch (GeneralSecurityException e1) {

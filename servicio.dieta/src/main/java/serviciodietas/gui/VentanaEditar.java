@@ -62,7 +62,7 @@ public class VentanaEditar extends JFrame {
 	private JCheckBox chckbxNINGUNA;
 	private JTextField textFieldEnt;
 
-	public VentanaEditar(Cliente cliente) {
+	public VentanaEditar(Cliente cliente, String busqueda) {
 		
 		//DEFINIR VENTANA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -231,7 +231,9 @@ public class VentanaEditar extends JFrame {
 				
 				try {
 					VentanaPrincipal vp = new VentanaPrincipal();
+					vp.filtroNombre.setText(busqueda);
 					vp.setVisible(true);
+					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -240,6 +242,7 @@ public class VentanaEditar extends JFrame {
 					e1.printStackTrace();
 				}
 				dispose();
+				
 				
 			}
 		});

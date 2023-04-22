@@ -43,6 +43,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
@@ -75,6 +77,15 @@ public class VentanaPrincipal extends JFrame {
 		//DEFINIR VENTANA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Servicio Nutrinafit");
+		//SE ORDENA LA TABLA AL ABRIR
+		this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+                int columnaTabla = 0;
+                filtro.setRowFilter(RowFilter.regexFilter(filtroNombre.getText(), columnaTabla));
+                //tablaClientes.getRowSorter().toggleSortOrder(columnaTabla);
+            }
+        });
 		setBounds(100, 100, 700, 450);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
@@ -141,6 +152,8 @@ public class VentanaPrincipal extends JFrame {
 		panel.setBounds(51, 33, 282, 38);
 		contentPane.add(panel);
 		
+		filtro();
+		
 		//AÑADIR FILTRO
 		filtroNombre.addKeyListener(new KeyAdapter() {
 			
@@ -153,6 +166,7 @@ public class VentanaPrincipal extends JFrame {
 		});
 		
 		
+        
 		
 	}
 	

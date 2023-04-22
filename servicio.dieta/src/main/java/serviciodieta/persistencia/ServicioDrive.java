@@ -594,9 +594,9 @@ public class ServicioDrive {
 				} else {
 					folderIdDie="1G8ByVmPw_3_Ch9st72j4uQ1CedTyj6Xb"; //NO AGUACATE
 				}
-			} else if (cliente.getNogustos().contains("Soy Vegan@")) {
+			} else if (cliente.getNogustos().contains("Soy VEGAN@")) {
 				folderIdDie="1sMmIIM_gbq4hEpgT6q6sXOaWEKH29-tu"; //VEGANA
-			} else if (cliente.getNogustos().contains("Soy Vegetarian@")) {
+			} else if (cliente.getNogustos().contains("Soy VEGETARIAN@")) {
 				folderIdDie="1gMXMlPpTcRtgR2XF3Fc7nBM3PEZx2KhS"; //VEGETARIANO
 			} else if (cliente.getNogustos().contains("Lactosa")) {
 				if (cliente.getNogustos().contains("Gluten")) {
@@ -667,7 +667,7 @@ public class ServicioDrive {
 		
 		int archivosDD;
 		if (cliente.getObjetivo().equals(Objetivo.definicion)) {
-			if (cliente.getMesesentrenados()==12) {
+			if (cliente.getMesesentrenados()>=12) {
 				archivosDD=0;
 			} else {
 				archivosDD=cliente.getMesesentrenados();
