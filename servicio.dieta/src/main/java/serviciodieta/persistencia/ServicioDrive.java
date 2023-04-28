@@ -53,6 +53,7 @@ public class ServicioDrive {
 	
 	private static Drive driveService;
 	private static String APPLICATION_NAME = "Google Drive";
+	private static Credential credential;
 	
 	
 	private static Credential authorize() throws IOException, GeneralSecurityException {
@@ -94,17 +95,18 @@ public class ServicioDrive {
 	
 	public static Drive getDriveService() throws GeneralSecurityException, IOException {
 		
-		Credential credencial = authorize();
-		
-		credencial.refreshToken();
-		
-		return new Drive.Builder(GoogleNetHttpTransport.newTrustedTransport(), JacksonFactory.getDefaultInstance(), credencial).setApplicationName(APPLICATION_NAME).build();
+		if (driveService == null) {
+            credential = authorize();
+            driveService = new Drive.Builder(GoogleNetHttpTransport.newTrustedTransport(),
+                    JacksonFactory.getDefaultInstance(), credential).setApplicationName(APPLICATION_NAME).build();
+        }
+        return driveService;
 		
 	}
 	
 	public static void descargarArchivos(Cliente cliente) throws GeneralSecurityException, IOException {
 		
-		Drive drive = serviciodieta.persistencia.ServicioDrive.getDriveService();
+		try{Drive drive = serviciodieta.persistencia.ServicioDrive.getDriveService();
 		
 		String clienteN= cliente.getNombreC().replaceAll("\\s+", "");
 		
@@ -1034,6 +1036,13 @@ public class ServicioDrive {
 		}
 		
 		System.out.println("Los ENTRENAMIENTOS han sido descargados con exito");
+		} finally {
+            // Cierra la conexión a Google Drive
+            driveService = null;
+            if (credential != null) {
+                credential = null;
+            }
+        }
 	}
 
 	

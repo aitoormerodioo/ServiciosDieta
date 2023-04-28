@@ -4,6 +4,7 @@ public class Cliente {
 
 		private String nombreC;
 		private String numeroT;
+		private String email;
 		private Sexo sexo;
 		private Peso peso;
 		private String nogustos;
@@ -14,11 +15,12 @@ public class Cliente {
 		private Objetivo objetivo;
 		private String entrenador;
 		
-		public Cliente(String nombreC, String numeroT, Sexo sexo, Peso peso, String nogustos, int diasentreno,
+		public Cliente(String nombreC, String numeroT, String email,Sexo sexo, Peso peso, String nogustos, int diasentreno,
 				int mesesentrenados, Nivel nivel, Lesion lesion, Objetivo objetivo, String entrenador) {
 			super();
 			this.nombreC = nombreC;
 			this.numeroT = numeroT;
+			this.email = email;
 			this.sexo = sexo;
 			this.peso = peso;
 			this.nogustos = nogustos;
@@ -44,6 +46,14 @@ public class Cliente {
 
 		public void setNumeroT(String numeroT) {
 			this.numeroT = numeroT;
+		}
+		
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
 		}
 
 		public Sexo getSexo() {
@@ -120,11 +130,13 @@ public class Cliente {
 
 		@Override
 		public String toString() {
-			return "Cliente [nombreC=" + nombreC + ", numeroT=" + numeroT + ", sexo=" + sexo + ", peso=" + peso
-					+ ", nogustos=" + nogustos + ", diasentreno=" + diasentreno + ", mesesentrenados=" + mesesentrenados
-					+ ", nivel=" + nivel + ", lesion=" + lesion + ", objetivo=" + objetivo + ", entrenador="
-					+ entrenador + "]";
+			return "Cliente [nombreC=" + nombreC + ", numeroT=" + numeroT + ", email=" + email + ", sexo=" + sexo
+					+ ", peso=" + peso + ", nogustos=" + nogustos + ", diasentreno=" + diasentreno
+					+ ", mesesentrenados=" + mesesentrenados + ", nivel=" + nivel + ", lesion=" + lesion + ", objetivo="
+					+ objetivo + ", entrenador=" + entrenador + "]";
 		}
+
+		
 		
 		
 		

@@ -62,6 +62,7 @@ public class VentanaEditar extends JFrame {
 	private JCheckBox chckbxNINGUNA;
 	private JTextField textFieldEnt;
 
+
 	public VentanaEditar(Cliente cliente, String busqueda) {
 		
 		//DEFINIR VENTANA
@@ -220,7 +221,7 @@ public class VentanaEditar extends JFrame {
 				}
 				
 				try {
-					serviciodieta.persistencia.ServicioSpreadSheets.modificarCliente(nombreC,sexo,peso,nogustos,diasentreno,mesesentrenados,nivel,lesiones,objetivo,entrenador,numT);
+					serviciodieta.persistencia.SpreadSheets.modificarCliente(nombreC,sexo,peso,nogustos,diasentreno,mesesentrenados,nivel,lesiones,objetivo,entrenador,numT);
 				} catch (IOException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
@@ -573,13 +574,18 @@ public class VentanaEditar extends JFrame {
 		
 		JLabel lblInfoT = new JLabel("Contacto:");
 		lblInfoT.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		lblInfoT.setBounds(344, 381, 62, 14);
+		lblInfoT.setBounds(190, 381, 62, 14);
 		contentPane.add(lblInfoT);
 		
 		JLabel lblNumeroT = new JLabel(cliente.getNumeroT());
 		lblNumeroT.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNumeroT.setBounds(403, 379, 110, 18);
 		contentPane.add(lblNumeroT);
+		
+		JLabel lblemail = new JLabel(cliente.getEmail());
+		lblemail.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblemail.setBounds(255, 379, 168, 18);
+		contentPane.add(lblemail);
 		
 		JLabel lblEntrenador = new JLabel("ENTRENADOR:");
 		lblEntrenador.setFont(new Font("Tahoma", Font.BOLD, 11));

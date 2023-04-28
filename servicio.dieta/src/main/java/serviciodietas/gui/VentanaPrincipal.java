@@ -94,7 +94,7 @@ public class VentanaPrincipal extends JFrame {
 		setLocationRelativeTo(null);
 		
 		//INICIALIZAR DATOS A LIST-CLIENTES
-		clientes = serviciodieta.persistencia.ServicioSpreadSheets.cargarClientes();
+		clientes = serviciodieta.persistencia.SpreadSheets.cargarClientes();
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
