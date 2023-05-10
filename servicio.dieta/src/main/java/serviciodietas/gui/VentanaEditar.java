@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import serviciodietas.data.Cliente;
 import serviciodietas.data.Lesion;
+import serviciodietas.data.Lugar;
 import serviciodietas.data.Nivel;
 import serviciodietas.data.Objetivo;
 import serviciodietas.data.Peso;
@@ -35,10 +36,7 @@ public class VentanaEditar extends JFrame {
 	private JPanel contentPane;
 	private JRadioButton rdbtnM;
 	private JRadioButton rdbtnH;
-	private JRadioButton rdbtnmenos70;
-	private JRadioButton rdbtnMas;
 	private JComboBox comboBoxDIAS;
-	private JRadioButton rdbtnEntre;
 	private JRadioButton rdbtnDefinicion;
 	private JRadioButton rdbtnSuperavit;
 	private JRadioButton rdbtnRodilla;
@@ -61,6 +59,11 @@ public class VentanaEditar extends JFrame {
 	private JCheckBox chckbxCLARAS;
 	private JCheckBox chckbxNINGUNA;
 	private JTextField textFieldEnt;
+	private JTextField textFieldPESO;
+	private JComboBox comboBoxNUMCOM;
+	private JRadioButton rdbtnGYM;
+	private JRadioButton rdbtnCASACON;
+	private JRadioButton rdbtnCASASIN;
 
 
 	public VentanaEditar(Cliente cliente, String busqueda) {
@@ -81,7 +84,7 @@ public class VentanaEditar extends JFrame {
 		JLabel labelNombre = new JLabel("");
 		labelNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		labelNombre.setForeground(new Color(0, 0, 255));
-		labelNombre.setBounds(21, 11, 309, 42);
+		labelNombre.setBounds(21, 11, 290, 42);
 		
 		
 		contentPane.add(labelNombre);
@@ -130,19 +133,13 @@ public class VentanaEditar extends JFrame {
 					sexo = "HOMBRE";
 				}
 				
-				int peso;
-				
-				if (rdbtnmenos70.isSelected()) {
-					peso= 65;
-				} else if (rdbtnEntre.isSelected()) {
-					peso = 80;
-				} else {
-					peso = 95;
-				}
+				int peso = Integer.parseInt(textFieldPESO.getText().toString());
 				
 				int diasentreno= Integer.parseInt(comboBoxDIAS.getSelectedItem().toString());
 				
 				int mesesentrenados = Integer.parseInt(comboBoxMESES.getSelectedItem().toString());
+				
+				int numerocomidas = Integer.parseInt(comboBoxNUMCOM.getSelectedItem().toString());
 				
 				String objetivo;
 				
@@ -172,6 +169,16 @@ public class VentanaEditar extends JFrame {
 					lesiones = "RODILLA (me impide hacer ciertos ejercicios)";
 				} else {
 					lesiones = "NINGUNA";
+				}
+				
+				String lugar;
+				
+				if (rdbtnGYM.isSelected()) {
+					lugar = "GYM";
+				} else if (rdbtnCASACON.isSelected()) {
+					lugar = "CASA (Tengo material)";
+				} else {
+					lugar = "CASA (No tengo material)";
 				}
 				
 				String nogustos = "";
@@ -221,7 +228,7 @@ public class VentanaEditar extends JFrame {
 				}
 				
 				try {
-					serviciodieta.persistencia.SpreadSheets.modificarCliente(nombreC,sexo,peso,nogustos,diasentreno,mesesentrenados,nivel,lesiones,objetivo,entrenador,numT);
+					serviciodieta.persistencia.SpreadSheets.modificarCliente(nombreC, sexo, peso, nogustos, diasentreno, mesesentrenados, nivel, lesiones, objetivo, entrenador, numT, lugar, numerocomidas);
 				} catch (IOException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
@@ -267,18 +274,6 @@ public class VentanaEditar extends JFrame {
 		lblPeso.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblPeso.setBounds(21, 127, 46, 14);
 		contentPane.add(lblPeso);
-		
-		rdbtnmenos70 = new JRadioButton("-70KG");
-		rdbtnmenos70.setBounds(67, 123, 76, 23);
-		contentPane.add(rdbtnmenos70);
-		
-		rdbtnEntre = new JRadioButton("70-90KG");
-		rdbtnEntre.setBounds(144, 123, 84, 23);
-		contentPane.add(rdbtnEntre);
-		
-		rdbtnMas = new JRadioButton("+90KG");
-		rdbtnMas.setBounds(230, 123, 75, 23);
-		contentPane.add(rdbtnMas);
 		
 		JLabel lblnogustos = new JLabel("INTOLERANCIAS/NO GUSTOS:");
 		lblnogustos.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -345,15 +340,15 @@ public class VentanaEditar extends JFrame {
 		contentPane.add(lblNivel);
 		
 		rdbtnPRINCIPIANTE = new JRadioButton("PRINCIPIANTE");
-		rdbtnPRINCIPIANTE.setBounds(67, 271, 125, 23);
+		rdbtnPRINCIPIANTE.setBounds(66, 282, 110, 23);
 		contentPane.add(rdbtnPRINCIPIANTE);
 		
 		rdbtnINTERMEDIO = new JRadioButton("INTERMEDIO");
-		rdbtnINTERMEDIO.setBounds(67, 297, 125, 23);
+		rdbtnINTERMEDIO.setBounds(66, 308, 110, 23);
 		contentPane.add(rdbtnINTERMEDIO);
 		
 		rdbtnAvanzado = new JRadioButton("AVANZADO");
-		rdbtnAvanzado.setBounds(67, 323, 125, 23);
+		rdbtnAvanzado.setBounds(66, 334, 110, 23);
 		contentPane.add(rdbtnAvanzado);
 		
 		JLabel lblLesiones = new JLabel("LESIONES:");
@@ -370,6 +365,11 @@ public class VentanaEditar extends JFrame {
 		comboBoxMESES.setMaximumRowCount(13);
 		comboBoxMESES.setBounds(487, 207, 73, 22);
 		contentPane.add(comboBoxMESES);
+		
+		comboBoxNUMCOM = new JComboBox();
+		comboBoxNUMCOM.setMaximumRowCount(4);
+		comboBoxNUMCOM.setBounds(240, 123, 68, 22);
+		contentPane.add(comboBoxNUMCOM);
 		
 		rdbtnNinguna = new JRadioButton("NINGUNA");
 		rdbtnNinguna.setBounds(417, 256, 117, 23);
@@ -408,19 +408,11 @@ public class VentanaEditar extends JFrame {
 			rdbtnM.setSelected(true);
 		}
 		
-		if (cliente.getPeso().equals(Peso.menos70)) {
-			rdbtnmenos70.setSelected(true);
-		} else if (cliente.getPeso().equals(Peso.mas90)) {
-			rdbtnMas.setSelected(true);
-		} else {
-			rdbtnEntre.setSelected(true);
-		}
-		
 		comboBoxDIAS.addItem("2");
 		comboBoxDIAS.addItem("3");
 		comboBoxDIAS.addItem("4");
 		comboBoxDIAS.addItem("5");
-
+		
 		
 		if (cliente.getDiasentreno() == 2) {
 			comboBoxDIAS.setSelectedIndex(0);
@@ -431,12 +423,29 @@ public class VentanaEditar extends JFrame {
 		} else {
 			comboBoxDIAS.setSelectedIndex(3);
 		}
+		
+
+		comboBoxNUMCOM.addItem("2");
+		comboBoxNUMCOM.addItem("3");
+		comboBoxNUMCOM.addItem("4");
+		comboBoxNUMCOM.addItem("5");
+		
+		if (cliente.getNumerocomidas() == 2) {
+			comboBoxNUMCOM.setSelectedIndex(0);
+		} else if (cliente.getNumerocomidas() == 3) {
+			comboBoxNUMCOM.setSelectedIndex(1);
+		} else if (cliente.getNumerocomidas() == 4){
+			comboBoxNUMCOM.setSelectedIndex(2);
+		} else {
+			comboBoxNUMCOM.setSelectedIndex(3);
+		}
 			
 		if (cliente.getObjetivo().equals(Objetivo.definicion)) {
 			rdbtnDefinicion.setSelected(true);
 		} else {
 			rdbtnSuperavit.setSelected(true);
 		}
+		
 		
 		if (cliente.getNivel().equals(Nivel.principiante)) {
 			rdbtnPRINCIPIANTE.setSelected(true);
@@ -548,9 +557,6 @@ public class VentanaEditar extends JFrame {
 		grupoSexo.add(rdbtnM);
 		
 		ButtonGroup grupoPeso = new ButtonGroup();
-		grupoPeso.add(rdbtnMas);
-		grupoPeso.add(rdbtnEntre);
-		grupoPeso.add(rdbtnmenos70);
 		
 		ButtonGroup grupoObjetivo = new ButtonGroup();
 		grupoObjetivo.add(rdbtnSuperavit);
@@ -567,24 +573,20 @@ public class VentanaEditar extends JFrame {
 		grupoLesiones.add(rdbtnLumbar);
 		grupoLesiones.add(rdbtnNinguna);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 248, 220));
-		panel.setBounds(0, 11, 324, 355);
-		contentPane.add(panel);
 		
 		JLabel lblInfoT = new JLabel("Contacto:");
 		lblInfoT.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		lblInfoT.setBounds(190, 381, 62, 14);
+		lblInfoT.setBounds(166, 381, 62, 14);
 		contentPane.add(lblInfoT);
 		
 		JLabel lblNumeroT = new JLabel(cliente.getNumeroT());
 		lblNumeroT.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNumeroT.setBounds(403, 379, 110, 18);
+		lblNumeroT.setBounds(410, 379, 110, 18);
 		contentPane.add(lblNumeroT);
 		
 		JLabel lblemail = new JLabel(cliente.getEmail());
 		lblemail.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblemail.setBounds(255, 379, 168, 18);
+		lblemail.setBounds(230, 379, 146, 18);
 		contentPane.add(lblemail);
 		
 		JLabel lblEntrenador = new JLabel("ENTRENADOR:");
@@ -597,9 +599,60 @@ public class VentanaEditar extends JFrame {
 		contentPane.add(textFieldEnt);
 		
 		
+		textFieldPESO = new JTextField(String.valueOf(cliente.getKilos()));
+		textFieldPESO.setBounds(66, 124, 62, 20);
+		contentPane.add(textFieldPESO);
+		
+		JLabel lblcomidas = new JLabel("COMIDAS:");
+		lblcomidas.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblcomidas.setBounds(166, 127, 68, 14);
+		contentPane.add(lblcomidas);
+		
+		JLabel lblLugar = new JLabel("LUGAR:");
+		lblLugar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblLugar.setBounds(182, 260, 46, 14);
+		contentPane.add(lblLugar);
+		
+		rdbtnGYM = new JRadioButton("GYM");
+		rdbtnGYM.setBounds(209, 282, 120, 23);
+		contentPane.add(rdbtnGYM);
+		
+		rdbtnCASACON = new JRadioButton("CASA(con MAT)");
+		rdbtnCASACON.setBounds(209, 308, 120, 23);
+		contentPane.add(rdbtnCASACON);
+		
+		rdbtnCASASIN = new JRadioButton("CASA(Sin MAT)");
+		rdbtnCASASIN.setBounds(209, 334, 120, 23);
+		contentPane.add(rdbtnCASASIN);
+		
+		ButtonGroup grupoLugar = new ButtonGroup();
+		grupoLesiones.add(rdbtnGYM);
+		grupoLesiones.add(rdbtnCASACON);
+		grupoLesiones.add(rdbtnCASASIN);
+		
+		//INICIALIZAR LUGAR
+		if (cliente.getLugar().equals(Lugar.gym)) {
+			rdbtnGYM.setSelected(true);
+		} else if (cliente.getLugar().equals(Lugar.casa_material)){
+			rdbtnCASACON.setSelected(true);
+		} else {
+			rdbtnCASASIN.setSelected(true);
+		}
+		
+		JLabel lblTMB = new JLabel("TMB: " + cliente.getTMB()+" KCal");  //INICIALIZAR TMB
+		lblTMB.setForeground(Color.RED);
+		lblTMB.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblTMB.setBounds(209, 25, 119, 18);
+		contentPane.add(lblTMB);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 240));
+		panel.setBounds(10, 11, 317, 362);
+		contentPane.add(panel);
+		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 248, 220));
-		panel_1.setBounds(334, 11, 350, 355);
+		panel_1.setBackground(new Color(255, 255, 240));
+		panel_1.setBounds(335, 11, 339, 362);
 		contentPane.add(panel_1);
 		
 		

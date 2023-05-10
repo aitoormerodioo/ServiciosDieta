@@ -152,6 +152,15 @@ public class VentanaPrincipal extends JFrame {
 		panel.setBounds(51, 33, 282, 38);
 		contentPane.add(panel);
 		
+		//CREAMOS LA IMAGEN DE FONDO
+		ImageIcon imagenFondo =  new ImageIcon(getClass().getResource("/fondo.jpg"));
+		ImageIcon nuevoIcono = new ImageIcon(imagenFondo.getImage().getScaledInstance(700,450,Image.SCALE_AREA_AVERAGING));
+				
+		JLabel labelFondo = new JLabel("",nuevoIcono,JLabel.CENTER);
+		labelFondo.setBounds(0, 0, 690, 440);
+
+		contentPane.add(labelFondo);
+		
 		filtro();
 		
 		//AÑADIR FILTRO

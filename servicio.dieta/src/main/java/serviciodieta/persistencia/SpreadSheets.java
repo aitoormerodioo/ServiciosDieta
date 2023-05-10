@@ -33,6 +33,7 @@ import com.google.api.services.sheets.v4.model.ValueRange;
 
 import serviciodietas.data.Cliente;
 import serviciodietas.data.Lesion;
+import serviciodietas.data.Lugar;
 import serviciodietas.data.Nivel;
 import serviciodietas.data.Objetivo;
 import serviciodietas.data.Peso;
@@ -111,7 +112,7 @@ public static List<Cliente> cargarClientes() throws GeneralSecurityException, IO
                 .getValues()
                 .size();
 		
-		String range = "clientes!A2:X"+numRows; 
+		String range = "clientes!A2:Y"+numRows; 
 		ValueRange response = sheetsService.spreadsheets().values()
 				        .get(SPREADSHEET_ID, range)
 				        .execute();
@@ -133,11 +134,11 @@ public static List<Cliente> cargarClientes() throws GeneralSecurityException, IO
 				}
 				
 				Peso peso = Peso.menos70;
-				int kgs = Integer.parseInt(row.get(21).toString());
+				int kilos = Integer.parseInt(row.get(21).toString());
 				
-				if (kgs>=70 && kgs<=90) {
+				if (kilos>=70 && kilos<=90) {
 					peso = Peso.entre70y90;
-				} else if (kgs>90) {
+				} else if (kilos>90) {
 					peso = Peso.mas90;
 				}
 				
@@ -175,7 +176,18 @@ public static List<Cliente> cargarClientes() throws GeneralSecurityException, IO
 					entrenador=row.get(17).toString();
 				}
 				
-				Cliente cliente = new Cliente(nombreC, numeroT, email, sexo, peso, noGustos, diasentreno, mesesentrenados, nivel, lesion, objetivo, entrenador);
+				Lugar lugar;
+				if (row.get(23).toString().contains("GYM")) {
+					lugar=Lugar.gym;
+				} else if (row.get(23).toString().contains("CASA (Tengo material)")){
+					lugar=Lugar.casa_material;
+				} else {
+					lugar=Lugar.casa_sin_material;
+				}
+				
+				int numerocomidas= Integer.parseInt(row.get(24).toString());
+				
+				Cliente cliente = new Cliente(nombreC, numeroT, email, sexo, peso, kilos, noGustos, diasentreno, mesesentrenados, nivel, lesion, objetivo, entrenador, lugar, numerocomidas);
 				   
 				listaClientes.add(cliente);
 		}
@@ -193,7 +205,7 @@ public static List<Cliente> cargarClientes() throws GeneralSecurityException, IO
 		}
 	}
 	
-	public static void modificarCliente(String nombreC, String sexo, int peso, String noGustos, int diasentreno, int mesesentrenados, String nivel, String lesion, String objetivo, String entrenador, String numT) throws IOException, GeneralSecurityException {
+	public static void modificarCliente(String nombreC, String sexo, int peso, String noGustos, int diasentreno, int mesesentrenados, String nivel, String lesion, String objetivo, String entrenador, String numT, String lugar, int numerocomidas) throws IOException, GeneralSecurityException {
 		
 		//CREAMOS EL SERVICIO SHEETS PARA CARGAR DATOS
 		try{sheetsService = serviciodieta.persistencia.SpreadSheets.getSheetsService();
@@ -222,9 +234,9 @@ public static List<Cliente> cargarClientes() throws GeneralSecurityException, IO
 		    }
 		}
 		
-		List<Object> newValues = Arrays.asList(null, null, null, null, null, null, objetivo, noGustos, null, null, null, nivel, diasentreno, lesion, null, null, null, entrenador, mesesentrenados, sexo, null, peso, null, null);
+		List<Object> newValues = Arrays.asList(null, null, null, null, null, null, objetivo, noGustos, null, null, null, nivel, diasentreno, lesion, null, null, null, entrenador, mesesentrenados, sexo, null, peso, null, lugar, numerocomidas);
 		
-		String range = "clientes!A"+filam+":X"+filam;
+		String range = "clientes!A"+filam+":Y"+filam;
 		
 		ValueRange response = sheetsService.spreadsheets().values()
 			    .get(SPREADSHEET_ID, range)
