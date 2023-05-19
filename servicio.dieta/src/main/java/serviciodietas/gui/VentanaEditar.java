@@ -64,6 +64,7 @@ public class VentanaEditar extends JFrame {
 	private JRadioButton rdbtnGYM;
 	private JRadioButton rdbtnCASACON;
 	private JRadioButton rdbtnCASASIN;
+	private JPanel panel_1_1;
 
 
 	public VentanaEditar(Cliente cliente, String busqueda) {
@@ -84,13 +85,13 @@ public class VentanaEditar extends JFrame {
 		JLabel labelNombre = new JLabel("");
 		labelNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		labelNombre.setForeground(new Color(0, 0, 255));
-		labelNombre.setBounds(21, 11, 290, 42);
+		labelNombre.setBounds(21, 11, 182, 42);
 		
 		
 		contentPane.add(labelNombre);
 		labelNombre.setText(cliente.getNombreC());
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Back");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -110,10 +111,10 @@ public class VentanaEditar extends JFrame {
 				
 			}
 		});
-		btnCancelar.setBounds(27, 377, 102, 23);
+		btnCancelar.setBounds(10, 377, 73, 23);
 		contentPane.add(btnCancelar);
 		
-		JButton btnConfirmar = new JButton("Confirmar");
+		JButton btnConfirmar = new JButton("Guardar");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -254,7 +255,7 @@ public class VentanaEditar extends JFrame {
 				
 			}
 		});
-		btnConfirmar.setBounds(542, 377, 102, 23);
+		btnConfirmar.setBounds(590, 377, 84, 23);
 		contentPane.add(btnConfirmar);
 		
 		JLabel lblSexo = new JLabel("SEXO:");
@@ -340,15 +341,15 @@ public class VentanaEditar extends JFrame {
 		contentPane.add(lblNivel);
 		
 		rdbtnPRINCIPIANTE = new JRadioButton("PRINCIPIANTE");
-		rdbtnPRINCIPIANTE.setBounds(66, 282, 110, 23);
+		rdbtnPRINCIPIANTE.setBounds(53, 282, 110, 23);
 		contentPane.add(rdbtnPRINCIPIANTE);
 		
 		rdbtnINTERMEDIO = new JRadioButton("INTERMEDIO");
-		rdbtnINTERMEDIO.setBounds(66, 308, 110, 23);
+		rdbtnINTERMEDIO.setBounds(53, 308, 110, 23);
 		contentPane.add(rdbtnINTERMEDIO);
 		
 		rdbtnAvanzado = new JRadioButton("AVANZADO");
-		rdbtnAvanzado.setBounds(66, 334, 110, 23);
+		rdbtnAvanzado.setBounds(53, 334, 110, 23);
 		contentPane.add(rdbtnAvanzado);
 		
 		JLabel lblLesiones = new JLabel("LESIONES:");
@@ -576,17 +577,17 @@ public class VentanaEditar extends JFrame {
 		
 		JLabel lblInfoT = new JLabel("Contacto:");
 		lblInfoT.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		lblInfoT.setBounds(166, 381, 62, 14);
+		lblInfoT.setBounds(93, 386, 53, 14);
 		contentPane.add(lblInfoT);
 		
 		JLabel lblNumeroT = new JLabel(cliente.getNumeroT());
 		lblNumeroT.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNumeroT.setBounds(410, 379, 110, 18);
+		lblNumeroT.setBounds(316, 384, 113, 18);
 		contentPane.add(lblNumeroT);
 		
 		JLabel lblemail = new JLabel(cliente.getEmail());
 		lblemail.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblemail.setBounds(230, 379, 146, 18);
+		lblemail.setBounds(149, 384, 169, 18);
 		contentPane.add(lblemail);
 		
 		JLabel lblEntrenador = new JLabel("ENTRENADOR:");
@@ -610,19 +611,19 @@ public class VentanaEditar extends JFrame {
 		
 		JLabel lblLugar = new JLabel("LUGAR:");
 		lblLugar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblLugar.setBounds(182, 260, 46, 14);
+		lblLugar.setBounds(171, 260, 46, 14);
 		contentPane.add(lblLugar);
 		
 		rdbtnGYM = new JRadioButton("GYM");
-		rdbtnGYM.setBounds(209, 282, 120, 23);
+		rdbtnGYM.setBounds(202, 282, 116, 23);
 		contentPane.add(rdbtnGYM);
 		
 		rdbtnCASACON = new JRadioButton("CASA(con MAT)");
-		rdbtnCASACON.setBounds(209, 308, 120, 23);
+		rdbtnCASACON.setBounds(202, 308, 116, 23);
 		contentPane.add(rdbtnCASACON);
 		
 		rdbtnCASASIN = new JRadioButton("CASA(Sin MAT)");
-		rdbtnCASASIN.setBounds(209, 334, 120, 23);
+		rdbtnCASASIN.setBounds(202, 334, 116, 23);
 		contentPane.add(rdbtnCASASIN);
 		
 		ButtonGroup grupoLugar = new ButtonGroup();
@@ -642,18 +643,23 @@ public class VentanaEditar extends JFrame {
 		JLabel lblTMB = new JLabel("TMB: " + cliente.getTMB()+" KCal");  //INICIALIZAR TMB
 		lblTMB.setForeground(Color.RED);
 		lblTMB.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblTMB.setBounds(209, 25, 119, 18);
+		lblTMB.setBounds(542, 335, 119, 18);
 		contentPane.add(lblTMB);
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 240));
-		panel.setBounds(10, 11, 317, 362);
-		contentPane.add(panel);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 240));
 		panel_1.setBounds(335, 11, 339, 362);
 		contentPane.add(panel_1);
+		
+		JLabel lblInstagram = new JLabel("IG: "+cliente.getInsta());
+		lblInstagram.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblInstagram.setBounds(439, 384, 141, 18);
+		contentPane.add(lblInstagram);
+		
+		panel_1_1 = new JPanel();
+		panel_1_1.setBackground(new Color(255, 255, 240));
+		panel_1_1.setBounds(10, 11, 318, 362);
+		contentPane.add(panel_1_1);
 		
 		
 	}

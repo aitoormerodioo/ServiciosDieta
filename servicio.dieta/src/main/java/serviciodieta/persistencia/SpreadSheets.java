@@ -112,7 +112,7 @@ public static List<Cliente> cargarClientes() throws GeneralSecurityException, IO
                 .getValues()
                 .size();
 		
-		String range = "clientes!A2:Y"+numRows; 
+		String range = "clientes!A2:Z"+numRows; 
 		ValueRange response = sheetsService.spreadsheets().values()
 				        .get(SPREADSHEET_ID, range)
 				        .execute();
@@ -187,7 +187,9 @@ public static List<Cliente> cargarClientes() throws GeneralSecurityException, IO
 				
 				int numerocomidas= Integer.parseInt(row.get(24).toString());
 				
-				Cliente cliente = new Cliente(nombreC, numeroT, email, sexo, peso, kilos, noGustos, diasentreno, mesesentrenados, nivel, lesion, objetivo, entrenador, lugar, numerocomidas);
+				String insta= row.get(25).toString();
+				
+				Cliente cliente = new Cliente(nombreC, numeroT, email, insta, sexo, peso, kilos, noGustos, diasentreno, mesesentrenados, nivel, lesion, objetivo, entrenador, lugar, numerocomidas);
 				   
 				listaClientes.add(cliente);
 		}
@@ -236,7 +238,7 @@ public static List<Cliente> cargarClientes() throws GeneralSecurityException, IO
 		
 		List<Object> newValues = Arrays.asList(null, null, null, null, null, null, objetivo, noGustos, null, null, null, nivel, diasentreno, lesion, null, null, null, entrenador, mesesentrenados, sexo, null, peso, null, lugar, numerocomidas);
 		
-		String range = "clientes!A"+filam+":Y"+filam;
+		String range = "clientes!A"+filam+":Z"+filam;
 		
 		ValueRange response = sheetsService.spreadsheets().values()
 			    .get(SPREADSHEET_ID, range)

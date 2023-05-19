@@ -44,6 +44,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import serviciodietas.data.Cliente;
 import serviciodietas.data.Lesion;
+import serviciodietas.data.Lugar;
 import serviciodietas.data.Nivel;
 import serviciodietas.data.Objetivo;
 import serviciodietas.data.Peso;
@@ -124,24 +125,184 @@ public class ServicioDrive {
 		String folderIdDie = "";
 		
 		if (cliente.getSexo().equals(Sexo.hombre)) {  /////////////////////////////// HOMBRE  (De momento basico)
-			if (cliente.getNumerocomidas()==2) {
-				folderIdDie="1jDeU5HGRLGAUtJx_5LvvnrA0o0ZTm6Vq"; // 2 COMIDAS
-			} else if(cliente.getNumerocomidas()==3) {
-				folderIdDie="1ztpBm__tVuAysxI3a_ylPWwkz0EPU01c"; // 3 COMIDAS
-			} else if(cliente.getNumerocomidas()==4) {
-				folderIdDie="1T2vFIRB-EO-z81y-n2oIKnO0vScSq3Cd"; // 4 COMIDAS
-			} else {
-				folderIdDie="1CGp0YFtTRJNnoThZJdz5V7w5f37Iwrfk"; // 5 COMIDAS
+			if (cliente.getNumerocomidas()==2) {  					// 2 COMIDAS
+				if (cliente.getNogustos().contains("NINGUNA")) {
+					folderIdDie="1wteDjh1O0tJPgdc9TNyI_VgmWTuQOnUr"; //BASICA
+				}  else if (cliente.getNogustos().contains("Soy VEGAN@")) {
+					folderIdDie="1QZYRM4zMViREH_im_MfgA1re7y40e0gl"; //VEGANA ****
+				} else if (cliente.getNogustos().contains("Soy VEGETARIAN@")) {
+					folderIdDie="1QZYRM4zMViREH_im_MfgA1re7y40e0gl";//VEGETARIANO
+				} else if (cliente.getNogustos().contains("Lactosa")) {
+					folderIdDie="17ADT9IIgSveDor27Kkjw_k7s2CZmcOxG";
+				} else if(cliente.getNogustos().contains("Gluten")){
+					folderIdDie="1u1Rkb8sOiRrWuUMaykWFVhq44RXH_hSD";
+				} else if(cliente.getNogustos().contains("Huevos")){
+					folderIdDie="1CVZ2hDfti-ANgM34eEt41hJytgiL52GN";
+				} else if(cliente.getNogustos().contains("Claras")){
+					folderIdDie="1O295aGTmfN-xOO0yeA3eIxu65rA7bSUF";
+				} else if(cliente.getNogustos().contains("Aguacate")){
+					folderIdDie="1FqTmVtvpvgz2tD5H7jauaBp-rDxIo2_W";
+				} else if(cliente.getNogustos().contains("Pescado")){
+					folderIdDie="1U8ChU8axm9MKsI0qpSzaBGERidchzW5d";
+				} else {  //VERDURA
+					folderIdDie="1XP3S7qC5TYaLSOV3fwgeXACdp18GzJgI";
+				}
+			} else if(cliente.getNumerocomidas()==3) {  			// 3 COMIDAS
+				if (cliente.getNogustos().contains("NINGUNA")) {
+					folderIdDie="1jf86LoUPHMaXRTH9xmPji7g5x2NtOGIN"; //BASICA
+				}  else if (cliente.getNogustos().contains("Soy VEGAN@")) {
+					folderIdDie="1NwBNVZipsVKpWg5Z2QskLgwJQtxNL2Ud"; //VEGANA
+				} else if (cliente.getNogustos().contains("Soy VEGETARIAN@")) {
+					folderIdDie="1Tqa8X1Sl6pDe2kkQI2V3JjnRYA-tIddX";//VEGETARIANO
+				} else if (cliente.getNogustos().contains("Lactosa")) {
+					folderIdDie="1ahFN8LO1e9H71vEBy-k_Sj0na_eVF6Ge";
+				} else if(cliente.getNogustos().contains("Gluten")){
+					folderIdDie="15szI2ZTZQOAMGMSPnz9o7r4DL8KOT2UB";
+				} else if(cliente.getNogustos().contains("Huevos")){
+					folderIdDie="1J-KpsxHu52GFzN2db9hGB1oX2M-srd1u";  // ****
+				} else if(cliente.getNogustos().contains("Claras")){
+					folderIdDie="1J-KpsxHu52GFzN2db9hGB1oX2M-srd1u";
+				} else if(cliente.getNogustos().contains("Aguacate")){
+					folderIdDie="17R-a4zVhgaElUav4I_sfRINJ6mujodPU";
+				} else if(cliente.getNogustos().contains("Pescado")){
+					folderIdDie="1af-C8B83G-ErnEScydxT4LS4kON4Ug7B";
+				} else {  //VERDURA
+					folderIdDie="1RJDRVkgM8sFNmINzpbk5PV_iJPgaz1g5";
+				} 
+			} else if(cliente.getNumerocomidas()==4) {  			// 4 COMIDAS
+				if (cliente.getNogustos().contains("NINGUNA")) {
+					folderIdDie="1bhDWQasVNgMeewY3nl6mMjqKR3t9h8c0"; //BASICA
+				}  else if (cliente.getNogustos().contains("Soy VEGAN@")) {
+					folderIdDie="1RmZTy0DPDnxs0QXGv9x6JxTWvCuP2E_9"; //VEGANA ****
+				} else if (cliente.getNogustos().contains("Soy VEGETARIAN@")) {
+					folderIdDie="1RmZTy0DPDnxs0QXGv9x6JxTWvCuP2E_9";//VEGETARIANO
+				} else if (cliente.getNogustos().contains("Lactosa")) {
+					folderIdDie="1yd55VZrqQ2PnazUkJ9IVRQxjpnAbosrp";
+				} else if(cliente.getNogustos().contains("Gluten")){
+					folderIdDie="1AoJYhZQb6yFs173Q_YCPDZ2RuydwOC-j";
+				} else if(cliente.getNogustos().contains("Huevos")){
+					folderIdDie="1kbsBM-Eu30S04YV9XDdDYFPHnUsVZt5r";
+				} else if(cliente.getNogustos().contains("Claras")){
+					folderIdDie="1wl1EvG3ndGvvPkcgB_2HNVAzhQK4RUkG";
+				} else if(cliente.getNogustos().contains("Aguacate")){
+					folderIdDie="1tOu7EVUB1qA4C8iMY4_WUzOuxhBCIYRP";
+				} else if(cliente.getNogustos().contains("Pescado")){
+					folderIdDie="1BaLMSACOSagmMOOiExVnGBye_B_-fEs_";
+				} else {  //VERDURA
+					folderIdDie="1sMCy_KoB74qV-ogktBpbczSDpeesLLfA";
+				}
+			} else {  												// 5 COMIDAS
+				if (cliente.getNogustos().contains("NINGUNA")) {
+					folderIdDie="1NiSZvOuF9ZrmtNp7lFYUd_JkJEe2TV06"; //BASICA
+				}  else if (cliente.getNogustos().contains("Soy VEGAN@")) {
+					folderIdDie="1NiSZvOuF9ZrmtNp7lFYUd_JkJEe2TV06"; //VEGANA ****
+				} else if (cliente.getNogustos().contains("Soy VEGETARIAN@")) {
+					folderIdDie="1NiSZvOuF9ZrmtNp7lFYUd_JkJEe2TV06";//VEGETARIANO ****
+				} else if (cliente.getNogustos().contains("Lactosa")) {
+					folderIdDie="1bH_US8VDCJJ-tzWSHX3nbBwQ5nNC93n5";
+				} else if(cliente.getNogustos().contains("Gluten")){
+					folderIdDie="1NiSZvOuF9ZrmtNp7lFYUd_JkJEe2TV06"; //****
+				} else if(cliente.getNogustos().contains("Huevos")){
+					folderIdDie="1bH_US8VDCJJ-tzWSHX3nbBwQ5nNC93n5";
+				} else if(cliente.getNogustos().contains("Claras")){
+					folderIdDie="1mSkVd9dJWqzqqF9UoLBPWkBlzuI80fBK";
+				} else if(cliente.getNogustos().contains("Aguacate")){
+					folderIdDie="1_bNnV2sOOLN3VvaZEN61cfVRvy7T4zrt";
+				} else if(cliente.getNogustos().contains("Pescado")){
+					folderIdDie="15vx1PR55l1XVDkWJW21UdFBzAmN_wFh_";
+				} else {  //VERDURA
+					folderIdDie="12t_zT87k0Yc9vEPsDRrlnad8n_1udUfO";
+				}
 			}
-		} else {   ////////////////////////////////////////////////////////////////// MUJER
-			if (cliente.getNumerocomidas()==2) {
-				folderIdDie="1uzto5m-9Y1HOKVPpR7MtbODptNp-6Tsf"; // 2 COMIDAS
-			} else if(cliente.getNumerocomidas()==3) {
-				folderIdDie="1ZZH8zFe9Uj_FWStQ-kr6bD-mdgd75KY8"; // 3 COMIDAS
-			} else if(cliente.getNumerocomidas()==4) {
-				folderIdDie="1Xlig9AvX09P9Ngt2e1zrWCS1jK7Ld4MY"; // 4 COMIDAS
-			} else {
-				folderIdDie="1IuWVMzuB0oiDb6fLnTfLVoUFNQxz0l4e"; // 5 COMIDAS
+		 } else {   ////////////////////////////////////////////////////////////////// MUJER
+			if (cliente.getNumerocomidas()==2) {  					// 2 COMIDAS
+				if (cliente.getNogustos().contains("NINGUNA")) {
+					folderIdDie="1o-BxZy3XXTGYHYm2qn5VZAnhi6Kssgm9"; //BASICA
+				}  else if (cliente.getNogustos().contains("Soy VEGAN@")) {
+					folderIdDie="13wppJDZVKdys24m4xS4IFOCZRKOjEzaa"; //VEGANA
+				} else if (cliente.getNogustos().contains("Soy VEGETARIAN@")) {
+					folderIdDie="1qjYyIlQr9x7lsf2usTT1p6N8kJiwXrPc";//VEGETARIANO
+				} else if (cliente.getNogustos().contains("Lactosa")) {
+					folderIdDie="1KlChmJEJGWmapWiJzImON5k5HmjWTzTn";
+				} else if(cliente.getNogustos().contains("Gluten")){
+					folderIdDie="1x74sOevykdvog0gH7_FDCWKEOWLevOyP";
+				} else if(cliente.getNogustos().contains("Huevos")){
+					folderIdDie="1VEfCiai_OHtyStfY-dGnPVNWOo95dXkj";
+				} else if(cliente.getNogustos().contains("Claras")){
+					folderIdDie="1Db067FJRi4SEnpTK0uPs4UNW3epY2yaJ";
+				} else if(cliente.getNogustos().contains("Aguacate")){
+					folderIdDie="1DHMs6r1xRzXmSIQ6eyUKEP_eItwMbMmq";
+				} else if(cliente.getNogustos().contains("Pescado")){
+					folderIdDie="1Y2pJRKY1bJZXJ6mbe0NJW2tFSYycLopK";
+				} else {  //VERDURA
+					folderIdDie="1yHPWUF9b9ORS7qfej4Z_dmIkV5WeVFC-";
+				}
+			} else if(cliente.getNumerocomidas()==3) {  			// 3 COMIDAS
+				if (cliente.getNogustos().contains("NINGUNA")) {
+					folderIdDie="1Fu1V5cf9zi69qjI8Wf3rfj8rOaEc8T-M"; //BASICA
+				}  else if (cliente.getNogustos().contains("Soy VEGAN@")) {
+					folderIdDie="1IATpoQseXdKmFw9OPCG8c1QnAbADdZFB"; //VEGANA
+				} else if (cliente.getNogustos().contains("Soy VEGETARIAN@")) {
+					folderIdDie="1cNBg8UXzKAIn4pdGs020blhOVjewJFQN";//VEGETARIANO
+				} else if (cliente.getNogustos().contains("Lactosa")) {
+					folderIdDie="1B7_8QMM9kU8LzBCSyhiwzxkzca05znzI";
+				} else if(cliente.getNogustos().contains("Gluten")){
+					folderIdDie="10-_EOlZLSqsz6xfiLl58i7Z4y8K7van3";
+				} else if(cliente.getNogustos().contains("Huevos")){
+					folderIdDie="1_k-0-nOe_Q7bDzDb1Cj0GaeScPbt2rPM";
+				} else if(cliente.getNogustos().contains("Claras")){
+					folderIdDie="11AHA_oI_5vHvqOCiSekvcJVKdYh7suEw";
+				} else if(cliente.getNogustos().contains("Aguacate")){
+					folderIdDie="1rznh_li8ZYNISY2fvcUsfpdJx90G3Tv6";
+				} else if(cliente.getNogustos().contains("Pescado")){
+					folderIdDie="1VT3fe2zqVuDBrfGDy9yCO1u8v8bgxu5Z";
+				} else {  //VERDURA
+					folderIdDie="16h-YbnwGckl_-DAceimHedW8MX0_Tewt";
+				} 
+			} else if(cliente.getNumerocomidas()==4) {  			// 4 COMIDAS
+				if (cliente.getNogustos().contains("NINGUNA")) {
+					folderIdDie="1yZ9YbX7Z2lZFxBJQ85K5EqN9TLbjGSVH"; //BASICA
+				}  else if (cliente.getNogustos().contains("Soy VEGAN@")) {
+					folderIdDie="1-FjBYcmA54iYf6lgiOMR31UmCi_XCWLb"; //VEGANA
+				} else if (cliente.getNogustos().contains("Soy VEGETARIAN@")) {
+					folderIdDie="1Xud9RbMVW1CsUvcuGuOZg2D7_DAyuFzC";//VEGETARIANO
+				} else if (cliente.getNogustos().contains("Lactosa")) {
+					folderIdDie="1LImMynsE1I67IGGiAVlOwY5ViMx9cX6d";
+				} else if(cliente.getNogustos().contains("Gluten")){
+					folderIdDie="15dg5_yEKHzqRl0Ay6lXrOwrgTJNRYZM3";
+				} else if(cliente.getNogustos().contains("Huevos")){
+					folderIdDie="1r9iZ69qtRaWn07X2qGhxx4bq3cWZ0kVv";
+				} else if(cliente.getNogustos().contains("Claras")){
+					folderIdDie="1IrN5B7cdf3mgGvCYLU5luzMUdgIVJStH";
+				} else if(cliente.getNogustos().contains("Aguacate")){
+					folderIdDie="1WhegN5bttI4dgooCqr0aSrZIMZMHpdlO";
+				} else if(cliente.getNogustos().contains("Pescado")){
+					folderIdDie="1yU9SEuPoRMjabSf6MIyN5PoSZQr39YzB";
+				} else {  //VERDURA
+					folderIdDie="1MYxzAQU8gl8ZS99hO_yjIQ_30N7ao4xP";
+				}
+			} else {  												// 5 COMIDAS
+				if (cliente.getNogustos().contains("NINGUNA")) {
+					folderIdDie="1F-ZvoVyo7eOYjyhbFylOxIMA6ZcUldTn"; //BASICA
+				}  else if (cliente.getNogustos().contains("Soy VEGAN@")) {
+					folderIdDie="1Gk7VHAn17ldJ01SIDV_zo7vTaNSAEjrd"; //VEGANA
+				} else if (cliente.getNogustos().contains("Soy VEGETARIAN@")) {
+					folderIdDie="1jvClH_oEkkzC9NJXWo-IcslEGfGnDzhg";//VEGETARIANO
+				} else if (cliente.getNogustos().contains("Lactosa")) {
+					folderIdDie="1UBJB99IJvt-27Pt2wOVM_xXuk7oMOtRS";
+				} else if(cliente.getNogustos().contains("Gluten")){
+					folderIdDie="1A6obWeAEyxrgcuQb3sr_dXOkZ91aTeDg";
+				} else if(cliente.getNogustos().contains("Huevos")){
+					folderIdDie="1fzkGcqlWQI6SzPIAbWvNorwWvsRAG8__";
+				} else if(cliente.getNogustos().contains("Claras")){
+					folderIdDie="1AatIyLYGfQ6eA1WXj7hd5eo4Mw9cAglE";
+				} else if(cliente.getNogustos().contains("Aguacate")){
+					folderIdDie="1blAteBem1JKBSc7-69xDT01h7oEg52N6";
+				} else if(cliente.getNogustos().contains("Pescado")){
+					folderIdDie="1LbEDJ8RpzFLiKO80iF7XCKPXyQJgW_F-";
+				} else {  //VERDURA
+					folderIdDie="1yrofVFKlm9D8Ut1QT3-kMX5_F2yOyKAb";
+				}
 			}
 		}
 		
@@ -710,12 +871,12 @@ public class ServicioDrive {
 		try {
 			for (File file : request1.execute().getItems()) {
 			
-			if (archivosDD!=0) {
-				archivosDD--;
-				ind++;
-				continue;
-				
-			} else {
+//			if (archivosDD!=0) {  // para desdcargar archivo a partir de X
+//				archivosDD--;
+//				ind++;
+//				continue;
+//				
+//			} else {
 			
 			String fileName = file.getTitle();
 			String cabezerafile;
@@ -732,7 +893,7 @@ public class ServicioDrive {
 			
 			String term=".docx";
 			
-		    OutputStream outputStream = new FileOutputStream(new java.io.File(destinationFolderA, cliente.getNombreC()+ fileName +term));
+		    OutputStream outputStream = new FileOutputStream(new java.io.File(destinationFolderA, fileName+"-"+cliente.getNombreC()+term));
 //		    if (cliente.getObjetivo().equals(Objetivo.volumen)) {
 //				outputStream=convertDocxToPdf(new FileInputStream(new java.io.File(destinationFolderA, "Dieta Mes "+ind+" "+cliente.getNombreC()+term)));
 //			} else {
@@ -743,273 +904,328 @@ public class ServicioDrive {
 		    outputStream.close();
 		   	ind++;
 			}
-			}
+//			}
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "El archivo de dieta no existe.", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		System.out.println("Las DIETAS han sido descargadas con exito");
 		
 		
-		//AHORA DESCARGAMOS LOS ENTRENAMIENTOS
+		//AHORA DESCARGAMOS LOS ENTRENAMIENTOS--------------------------------------------------------------------------------------------------------------------------------
 		String folderIdEntr = "";
 		
-		if (cliente.getSexo().equals(Sexo.hombre)) {
-			if (cliente.getNivel().equals(Nivel.principiante)) {
-				if (cliente.getDiasentreno()==2) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1QfUsS-0sj0m5Mhu2376jJVh6kyfkMAXe";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1LDno6fcXrzsAEX2blBQr5w6j8132WzF-";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1jWDsEWSug9bvepvUM-iKMVTiHYbTre8X";
-					} else {
-						folderIdEntr="1vSThko8SZS7_ihV6Wv1UEZW4aR0aGmKU";
-					}
-				} else if (cliente.getDiasentreno()==3) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1ZM-VCq-rnsinIMEv9oU9zgdfR7fWy7JN";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1eQik1_S7SksFwHcruKyW1T5Hyu18TGQD";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1aoV84vPPOi04Wu5dA5uXOZ776Q3CqwId";
-					} else {
-						folderIdEntr="1COwaKPnLKzOANRPZjylIJ6BWuI8Um5gi";
-					}
-				} else if (cliente.getDiasentreno()==4) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1acD5-KPPCB-CGVp_5AP5kDnFICVknPb_";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1TJB1A1oyvSxCvcmebtbJHAmT9CrUoPy_";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1n0M0gc-90SbT8rsiyFofQy8Rjcr5QUN-";
-					} else {
-						folderIdEntr="1NpGPxTbhM6jpxH_nj5De8RXsXbNbO8qC";
-					}
+		if (cliente.getSexo().equals(Sexo.hombre)) { /////////// HOMBRE
+			if (cliente.getLugar().equals(Lugar.gym)) {  //GYM
+				if (cliente.getDiasentreno()==4) {
+					folderIdEntr = "1NI19fd1EiwWYBXLPjst-9jpEg9tArBWD";
+				} else if (cliente.getDiasentreno()==5) {
+					folderIdEntr = "1OY524Nfjt_ZsC8O7Igfkc2mUlRJ16G4o";
 				} else {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1nAvYhw2a5QTtU2-H5Mysd8rwuSXRvQaX";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1E08oHSD3UNyoj0_zVOEDb7rIMzeRzldi";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1m0loUg6mfe7tOX5gxaFPkEMDCaDvUpQu";
-					} else {
-						folderIdEntr="12qH7-5qACeGnbR3I7cuVx6xdIHVo-lz2";
-					}
+					folderIdEntr = "1BOY8YnsUUo8lf3UP9cOYxoCLX0xkpEb9";
 				}
-			} else if (cliente.getNivel().equals(Nivel.intermedio)) {
-				if (cliente.getDiasentreno()==2) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1ClggZ5JWABhv8FMcncdtzCpJGh6hgStE";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1ijkAwj7_FNjSMEMsgkQMVL8R08mIMooD";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="13jvZThnkUAD6U5aS33NersDPVN6tUjcM";
-					} else {
-						folderIdEntr="1PCUcHv-pOEYTkkE7nazpKsJOaykdTGXL";
-					}
-				} else if (cliente.getDiasentreno()==3) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1CRP-rOzCNro8Bg0wHLHx5fJ9gS6j3SQI";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1D2rr0CmVDtsS6DSrNWxJvHxZvN-jmjKQ";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1wlbjIFjFi3ldDZpELR5uwHRR1vJ1MqOa";
-					} else {
-						folderIdEntr="1_2NAJVf5_nGm_fjQkV2s5YzzH_rMrItw";
-					}
-				} else if (cliente.getDiasentreno()==4) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1FmEYqQ2onCj7UFhax__YAOE7fEW1l3Ov";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1JtGUjSxXm3TCy_eRk-l8SzkklYPDqygE";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1Nla71Y4Lo75gp2_vyaF6k39Z-hVJjqqQ";
-					} else {
-						folderIdEntr="1kz4fMWKPXuizObYao53wN-NsxfGlwUSk";
-					}
+			} else if (cliente.getLugar().equals(Lugar.casa_material)) {  //CON MANCUERNAS Y BARRAS
+				if (cliente.getDiasentreno()==4) {
+					folderIdEntr = "13ko4o7TbZqYz521lm5aXvunOwvPIGglH";
+				} else if (cliente.getDiasentreno()==5) {
+					folderIdEntr = "1u4T8vCsFlDV0tkK74TzKcpf-kvi2CoNP";
 				} else {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1EcjWufWyhltMOkGy5WY-VXWixDXImYiw";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1bVjcTZa4Gf1akPjUzxEwqlOK2Hc_Vexf";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1IrRGswKeVrzQU4geLOTo4GAGBohORaW4";
-					} else {
-						folderIdEntr="1jlgIReRcgI3Tex1oCyNP2Yai1rwRX4Ee";
-					}
+					folderIdEntr = "1Jv3PCagFDe7Vb3hMd2c4lqktWruQ8SKo";
 				}
-			} else {
-				if (cliente.getDiasentreno()==2) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1Fl3LMHO09KmpA2z-LMzlgOnhVUVuL7O1";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1xIX7Jdb4Jxh2sLmgn2oCJKf7KKDQcGb_";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1gZux_vXQVx4exp7DAmeRgn7r3TRVb5Kb";
-					} else {
-						folderIdEntr="1eIS6wSN4omg0zmniye1tKIis209gBk-i";
-					}
-				} else if (cliente.getDiasentreno()==3) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1Yun3yqQa2GkXkwN6-smjUgUPcG1b0WgA";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1atXlNSEatsPeeYC2t_HxuNnPJbHlv-iw";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1FW9NN3yR7ZHflOZ2DNrdpnRW9kh12QMg";
-					} else {
-						folderIdEntr="1NK9tkVjn4ZcPdwmSAQz5zJ_4u1GneSBC";
-					}
-				} else if (cliente.getDiasentreno()==4) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1ZoivhEWi44K-KZBXoSecSA1Hr8tLnR5Q";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1-tYqgpdySQJjh57BI6LXBLzn9spalTkP";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="18HVbBrdzVR0Kq5ohZKzXxcS9PjNgXRVZ";
-					} else {
-						folderIdEntr="1MChOpVmYnfmucok0MQGD4nFhP9s56T06";
-					}
+			} else {      // GOMAS
+				if (cliente.getDiasentreno()==4) {
+					folderIdEntr = "1DY4T88gcLJb_xlIn1oPydNpYQo2u86iJ";
+				} else if (cliente.getDiasentreno()==5) {
+					folderIdEntr = "1C1nuFH3U2_j1I6XRYaGIpOWx4yvE25YQ";
 				} else {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1QpnWxsJf_X-zYCEnyJBF72-K63ruGrGI";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1UnAhlu0itaxUjs_QEq1Yq6jpaq20paEO";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1CgFFbA9nLghiOUqrCwaLJtfXQgNfdn6l";
-					} else {
-						folderIdEntr="14oFoq13q5tjiXlHFdoNHrjHwHwcGmIlL";
-					}
+					folderIdEntr = "1i7N_QMaG_yAah_faNK18vWMuoIgFPisv";
 				}
 			}
-		} else {
-			if (cliente.getNivel().equals(Nivel.principiante)) {
-				if (cliente.getDiasentreno()==2) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1gd7VG3JfWQZWzF5bNCFJqNXCUFqXfHgW";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="15Sy8jTKX0LjAiI0r_KpmzttyHi9oJEnn";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1vcsJPXLS_GaWJeCA3r8LIQAWp5RKNTrv";
-					} else {
-						folderIdEntr="1aVJO_YDkKTQ7yxZNl_ZTO6oL9np1JvEx";
-					}
-				} else if (cliente.getDiasentreno()==3) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1dRYHopSkP7yLKI67wBtj9-Oc3_60uYSP";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1J9MWLUSt5VPf5t9xFNvybiE45ecdgbcB";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1QWaFMV8I55uK8KcDbbnWQNLT55KxK3JN";
-					} else {
-						folderIdEntr="1O3Y1Z9ROhT0aDEteKzZO_VX4sAX2M9ju";
-					}
-				} else if (cliente.getDiasentreno()==4) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="18tp97ja7jMaePrbz7-CrWLreNxb2yPAD";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1wpT_MjGZE0qQMGiOkn22vtu9ZCxHJI0c";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1tX6Okt7bHlnTW3bAEmPsxjX3lKPsFQwV";
-					} else {
-						folderIdEntr="1Yu97CgAMV6RMRPBgrjLB4bgc0G453ws9";
-					}
+			
+		} else {     //////////////////////////////////////////  MUJER
+			if (cliente.getLugar().equals(Lugar.gym)) {  //GYM
+				if (cliente.getDiasentreno()==4) {
+					folderIdEntr = "1_T8bTOW8137kVFvSqxy29cP0cdA12JSB";
+				} else if (cliente.getDiasentreno()==5) {
+					folderIdEntr = "1NtpN71HXtTyzAGcgANVBBuw_TezqupEe";
 				} else {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1fJkWEcaOKg7IQiaTbR8rRCqf_PJwpmxF";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="14El42mfmIVQLUg6eA25sjAy4ogtsVXcB";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1dwKv6CrWgqkHmgEZCOwQ1xy3lrUub738";
-					} else {
-						folderIdEntr="18IMSHjsbMsh_Voe021wR5ZtgbVFqJNRd";
-					}
+					folderIdEntr = "16G1RMKtO23AhT6_W4v4dBz-LhS6uP1Bp";
 				}
-			} else if (cliente.getNivel().equals(Nivel.intermedio)) {
-				if (cliente.getDiasentreno()==2) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1vqwKAgT5WbVP6e2tWqFUxqbNBbYQgQ4Q";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1N77IVdNfZaMi02R41mXhoFnnGGu7_yP-";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1Dfk9dRIBEKutlMxmwMoI9fBJxyiGwk_c";
-					} else {
-						folderIdEntr="1jfDlow4--oho4iWblXM1ctkuuN679f_g";
-					}
-				} else if (cliente.getDiasentreno()==3) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1EeirREjQ0-GzeE5uFkHeRhCaCBqb5EmV";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1dnUQpLboOWS68R9w6zu3isbkFEIzrFgw";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1FV_dJ4h8FKnO3BSssGXFfYyvl6CTCFLg";
-					} else {
-						folderIdEntr="19TJ3whIQhuAwLnMVB61ZJundYuwOpHVw";
-					}
-				} else if (cliente.getDiasentreno()==4) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1c_6yibLysqFpjeIjon2jnNgFOQqJQpX5";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1vY4rIJo0Uceq7yk2CdDIEo0K-GMBxVWE";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1eSa7XTmBM4NbacJZKmEIG8Ez7zk_Po0-";
-					} else {
-						folderIdEntr="13kYjNt2z50WTWx7k3CNgT4EVJ0cE5sXx";
-					}
+			} else if (cliente.getLugar().equals(Lugar.casa_material)) {  //CON MANCUERNAS Y BARRAS
+				if (cliente.getDiasentreno()==4) {
+					folderIdEntr = "1C8w6xRtv8K65kpL8V-d1XnW4Y3S_icSS";
+				} else if (cliente.getDiasentreno()==5) {
+					folderIdEntr = "1A6xiR2cZeKuHBVJ5K1k5nZ6JFGs_Z13g";
 				} else {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1hnJYrshH_gYaTKV7lLNuP49HepFjmSVs";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1YN47RHxU74ZZwE-UTT9dTlL14aLX3bI6";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1GNrTGMun2QYTYoSdXK8-o--wdL4PXeVz";
-					} else {
-						folderIdEntr="1SDhjHwu7KS7GhHt-O2lvKnxn7hyZG5fR";
-					}
+					folderIdEntr = "1T-C4SpSc-r8Ye4jPWKTGw4Lye4WIjg56";
 				}
-			} else {
-				if (cliente.getDiasentreno()==2) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1377uJwBD1Q8GL75QxLb4PRkQJl1NT3Yo";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1IMgqofM6Ae624Lciqo9icxy0w3gh0azQ";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="18_cM-0pCrY6GFKDzfD8xU4ROHJGDdGtd";
-					} else {
-						folderIdEntr="1P06Ry1hz6Zc2xh4-yd9BWAAdSitGQSN8";
-					}
-				} else if (cliente.getDiasentreno()==3) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1_KKb6ocQHBhHf7277_IiTbmls0y2Ca_x";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1DF4lOZMF2Usqmzy_WGxtCZLXsGLakNxu";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="1J_1XxrwS_1V4ae9MhEb9ZV_HqQW8OQuy";
-					} else {
-						folderIdEntr="1COkZzI87Ln-iIBdolyoUp2FRTiHScww2";
-					}
-				} else if (cliente.getDiasentreno()==4) {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1awZBCiryUtaxuSXbVztsf1bXUqUrgUPw";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1J6H96cc8N5F3lhGaaKEaOn4Jd1fQvBI8";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="12uAORFIOjMaBzZKkF5JPv7LyZxImwmSO";
-					} else {
-						folderIdEntr="1K9wY2efNLpFhmuKThIHi6zzqgwDHvDuH";
-					}
+			} else {      // GOMAS
+				if (cliente.getDiasentreno()==4) {
+					folderIdEntr = "15kwrLIi9_yuh-83hJ0nx2cZTaSLXcwvf";
+				} else if (cliente.getDiasentreno()==5) {
+					folderIdEntr = "1webw5pAG2rx0k7oHbwbmlNY6MK_mNjwy";
 				} else {
-					if (cliente.getLesion().equals(Lesion.ninguna)) {
-						folderIdEntr="1PFfbZhHn8i6dSMxAlsrvJuOWwnaLOhwV";
-					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
-						folderIdEntr="1V67bLcJs3VfCoSiU1HKWzB7DsiGkWnsv";
-					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
-						folderIdEntr="11cTXi5aE34FTatmNXlceRNcV0QqJKlp1";
-					} else {
-						folderIdEntr="1hd6pXdc4PGGE4vqZUVKZSz_XI07jT9uB";
-					}
+					folderIdEntr = "1MDcVwwuRuWOUl13osb6T2CSbRDNMzpSV";
 				}
 			}
 		}
+		
+//		if (cliente.getSexo().equals(Sexo.hombre)) {
+//			if (cliente.getNivel().equals(Nivel.principiante)) {
+//				if (cliente.getDiasentreno()==2) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1QfUsS-0sj0m5Mhu2376jJVh6kyfkMAXe";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1LDno6fcXrzsAEX2blBQr5w6j8132WzF-";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1jWDsEWSug9bvepvUM-iKMVTiHYbTre8X";
+//					} else {
+//						folderIdEntr="1vSThko8SZS7_ihV6Wv1UEZW4aR0aGmKU";
+//					}
+//				} else if (cliente.getDiasentreno()==3) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1ZM-VCq-rnsinIMEv9oU9zgdfR7fWy7JN";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1eQik1_S7SksFwHcruKyW1T5Hyu18TGQD";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1aoV84vPPOi04Wu5dA5uXOZ776Q3CqwId";
+//					} else {
+//						folderIdEntr="1COwaKPnLKzOANRPZjylIJ6BWuI8Um5gi";
+//					}
+//				} else if (cliente.getDiasentreno()==4) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1acD5-KPPCB-CGVp_5AP5kDnFICVknPb_";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1TJB1A1oyvSxCvcmebtbJHAmT9CrUoPy_";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1n0M0gc-90SbT8rsiyFofQy8Rjcr5QUN-";
+//					} else {
+//						folderIdEntr="1NpGPxTbhM6jpxH_nj5De8RXsXbNbO8qC";
+//					}
+//				} else {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1nAvYhw2a5QTtU2-H5Mysd8rwuSXRvQaX";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1E08oHSD3UNyoj0_zVOEDb7rIMzeRzldi";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1m0loUg6mfe7tOX5gxaFPkEMDCaDvUpQu";
+//					} else {
+//						folderIdEntr="12qH7-5qACeGnbR3I7cuVx6xdIHVo-lz2";
+//					}
+//				}
+//			} else if (cliente.getNivel().equals(Nivel.intermedio)) {
+//				if (cliente.getDiasentreno()==2) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1ClggZ5JWABhv8FMcncdtzCpJGh6hgStE";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1ijkAwj7_FNjSMEMsgkQMVL8R08mIMooD";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="13jvZThnkUAD6U5aS33NersDPVN6tUjcM";
+//					} else {
+//						folderIdEntr="1PCUcHv-pOEYTkkE7nazpKsJOaykdTGXL";
+//					}
+//				} else if (cliente.getDiasentreno()==3) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1CRP-rOzCNro8Bg0wHLHx5fJ9gS6j3SQI";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1D2rr0CmVDtsS6DSrNWxJvHxZvN-jmjKQ";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1wlbjIFjFi3ldDZpELR5uwHRR1vJ1MqOa";
+//					} else {
+//						folderIdEntr="1_2NAJVf5_nGm_fjQkV2s5YzzH_rMrItw";
+//					}
+//				} else if (cliente.getDiasentreno()==4) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1FmEYqQ2onCj7UFhax__YAOE7fEW1l3Ov";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1JtGUjSxXm3TCy_eRk-l8SzkklYPDqygE";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1Nla71Y4Lo75gp2_vyaF6k39Z-hVJjqqQ";
+//					} else {
+//						folderIdEntr="1kz4fMWKPXuizObYao53wN-NsxfGlwUSk";
+//					}
+//				} else {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1EcjWufWyhltMOkGy5WY-VXWixDXImYiw";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1bVjcTZa4Gf1akPjUzxEwqlOK2Hc_Vexf";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1IrRGswKeVrzQU4geLOTo4GAGBohORaW4";
+//					} else {
+//						folderIdEntr="1jlgIReRcgI3Tex1oCyNP2Yai1rwRX4Ee";
+//					}
+//				}
+//			} else {
+//				if (cliente.getDiasentreno()==2) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1Fl3LMHO09KmpA2z-LMzlgOnhVUVuL7O1";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1xIX7Jdb4Jxh2sLmgn2oCJKf7KKDQcGb_";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1gZux_vXQVx4exp7DAmeRgn7r3TRVb5Kb";
+//					} else {
+//						folderIdEntr="1eIS6wSN4omg0zmniye1tKIis209gBk-i";
+//					}
+//				} else if (cliente.getDiasentreno()==3) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1Yun3yqQa2GkXkwN6-smjUgUPcG1b0WgA";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1atXlNSEatsPeeYC2t_HxuNnPJbHlv-iw";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1FW9NN3yR7ZHflOZ2DNrdpnRW9kh12QMg";
+//					} else {
+//						folderIdEntr="1NK9tkVjn4ZcPdwmSAQz5zJ_4u1GneSBC";
+//					}
+//				} else if (cliente.getDiasentreno()==4) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1ZoivhEWi44K-KZBXoSecSA1Hr8tLnR5Q";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1-tYqgpdySQJjh57BI6LXBLzn9spalTkP";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="18HVbBrdzVR0Kq5ohZKzXxcS9PjNgXRVZ";
+//					} else {
+//						folderIdEntr="1MChOpVmYnfmucok0MQGD4nFhP9s56T06";
+//					}
+//				} else {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1QpnWxsJf_X-zYCEnyJBF72-K63ruGrGI";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1UnAhlu0itaxUjs_QEq1Yq6jpaq20paEO";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1CgFFbA9nLghiOUqrCwaLJtfXQgNfdn6l";
+//					} else {
+//						folderIdEntr="14oFoq13q5tjiXlHFdoNHrjHwHwcGmIlL";
+//					}
+//				}
+//			}
+//		} else {
+//			if (cliente.getNivel().equals(Nivel.principiante)) {
+//				if (cliente.getDiasentreno()==2) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1gd7VG3JfWQZWzF5bNCFJqNXCUFqXfHgW";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="15Sy8jTKX0LjAiI0r_KpmzttyHi9oJEnn";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1vcsJPXLS_GaWJeCA3r8LIQAWp5RKNTrv";
+//					} else {
+//						folderIdEntr="1aVJO_YDkKTQ7yxZNl_ZTO6oL9np1JvEx";
+//					}
+//				} else if (cliente.getDiasentreno()==3) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1dRYHopSkP7yLKI67wBtj9-Oc3_60uYSP";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1J9MWLUSt5VPf5t9xFNvybiE45ecdgbcB";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1QWaFMV8I55uK8KcDbbnWQNLT55KxK3JN";
+//					} else {
+//						folderIdEntr="1O3Y1Z9ROhT0aDEteKzZO_VX4sAX2M9ju";
+//					}
+//				} else if (cliente.getDiasentreno()==4) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="18tp97ja7jMaePrbz7-CrWLreNxb2yPAD";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1wpT_MjGZE0qQMGiOkn22vtu9ZCxHJI0c";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1tX6Okt7bHlnTW3bAEmPsxjX3lKPsFQwV";
+//					} else {
+//						folderIdEntr="1Yu97CgAMV6RMRPBgrjLB4bgc0G453ws9";
+//					}
+//				} else {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1fJkWEcaOKg7IQiaTbR8rRCqf_PJwpmxF";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="14El42mfmIVQLUg6eA25sjAy4ogtsVXcB";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1dwKv6CrWgqkHmgEZCOwQ1xy3lrUub738";
+//					} else {
+//						folderIdEntr="18IMSHjsbMsh_Voe021wR5ZtgbVFqJNRd";
+//					}
+//				}
+//			} else if (cliente.getNivel().equals(Nivel.intermedio)) {
+//				if (cliente.getDiasentreno()==2) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1vqwKAgT5WbVP6e2tWqFUxqbNBbYQgQ4Q";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1N77IVdNfZaMi02R41mXhoFnnGGu7_yP-";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1Dfk9dRIBEKutlMxmwMoI9fBJxyiGwk_c";
+//					} else {
+//						folderIdEntr="1jfDlow4--oho4iWblXM1ctkuuN679f_g";
+//					}
+//				} else if (cliente.getDiasentreno()==3) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1EeirREjQ0-GzeE5uFkHeRhCaCBqb5EmV";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1dnUQpLboOWS68R9w6zu3isbkFEIzrFgw";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1FV_dJ4h8FKnO3BSssGXFfYyvl6CTCFLg";
+//					} else {
+//						folderIdEntr="19TJ3whIQhuAwLnMVB61ZJundYuwOpHVw";
+//					}
+//				} else if (cliente.getDiasentreno()==4) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1c_6yibLysqFpjeIjon2jnNgFOQqJQpX5";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1vY4rIJo0Uceq7yk2CdDIEo0K-GMBxVWE";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1eSa7XTmBM4NbacJZKmEIG8Ez7zk_Po0-";
+//					} else {
+//						folderIdEntr="13kYjNt2z50WTWx7k3CNgT4EVJ0cE5sXx";
+//					}
+//				} else {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1hnJYrshH_gYaTKV7lLNuP49HepFjmSVs";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1YN47RHxU74ZZwE-UTT9dTlL14aLX3bI6";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1GNrTGMun2QYTYoSdXK8-o--wdL4PXeVz";
+//					} else {
+//						folderIdEntr="1SDhjHwu7KS7GhHt-O2lvKnxn7hyZG5fR";
+//					}
+//				}
+//			} else {
+//				if (cliente.getDiasentreno()==2) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1377uJwBD1Q8GL75QxLb4PRkQJl1NT3Yo";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1IMgqofM6Ae624Lciqo9icxy0w3gh0azQ";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="18_cM-0pCrY6GFKDzfD8xU4ROHJGDdGtd";
+//					} else {
+//						folderIdEntr="1P06Ry1hz6Zc2xh4-yd9BWAAdSitGQSN8";
+//					}
+//				} else if (cliente.getDiasentreno()==3) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1_KKb6ocQHBhHf7277_IiTbmls0y2Ca_x";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1DF4lOZMF2Usqmzy_WGxtCZLXsGLakNxu";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="1J_1XxrwS_1V4ae9MhEb9ZV_HqQW8OQuy";
+//					} else {
+//						folderIdEntr="1COkZzI87Ln-iIBdolyoUp2FRTiHScww2";
+//					}
+//				} else if (cliente.getDiasentreno()==4) {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1awZBCiryUtaxuSXbVztsf1bXUqUrgUPw";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1J6H96cc8N5F3lhGaaKEaOn4Jd1fQvBI8";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="12uAORFIOjMaBzZKkF5JPv7LyZxImwmSO";
+//					} else {
+//						folderIdEntr="1K9wY2efNLpFhmuKThIHi6zzqgwDHvDuH";
+//					}
+//				} else {
+//					if (cliente.getLesion().equals(Lesion.ninguna)) {
+//						folderIdEntr="1PFfbZhHn8i6dSMxAlsrvJuOWwnaLOhwV";
+//					} else if (cliente.getLesion().equals(Lesion.lumbar)) {
+//						folderIdEntr="1V67bLcJs3VfCoSiU1HKWzB7DsiGkWnsv";
+//					} else if (cliente.getLesion().equals(Lesion.rodilla)) {
+//						folderIdEntr="11cTXi5aE34FTatmNXlceRNcV0QqJKlp1";
+//					} else {
+//						folderIdEntr="1hd6pXdc4PGGE4vqZUVKZSz_XI07jT9uB";
+//					}
+//				}
+//			}
+//		}
 		
 		
 		

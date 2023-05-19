@@ -5,6 +5,7 @@ public class Cliente {
 		private String nombreC;
 		private String numeroT;
 		private String email;
+		private String insta;
 		private Sexo sexo;
 		private Peso peso;
 		private int kilos;
@@ -19,13 +20,14 @@ public class Cliente {
 		private int numerocomidas;
 		private float TMB;
 		
-		public Cliente(String nombreC, String numeroT, String email, Sexo sexo, Peso peso,int kilos, String nogustos,
+		public Cliente(String nombreC, String numeroT, String email, String insta, Sexo sexo, Peso peso,int kilos, String nogustos,
 				int diasentreno, int mesesentrenados, Nivel nivel, Lesion lesion, Objetivo objetivo, String entrenador,
 				Lugar lugar, int numerocomidas) {
 			super();
 			this.nombreC = nombreC;
 			this.numeroT = numeroT;
 			this.email = email;
+			this.insta = insta;
 			this.sexo = sexo;
 			this.peso = peso;
 			this.kilos=kilos;
@@ -87,6 +89,14 @@ public class Cliente {
 
 		public void setEmail(String email) {
 			this.email = email;
+		}
+		
+		public String getInsta() {
+			return insta;
+		}
+
+		public void setInsta(String insta) {
+			this.insta = insta;
 		}
 
 		public Sexo getSexo() {
@@ -195,13 +205,14 @@ public class Cliente {
 
 		@Override
 		public String toString() {
-			return "Cliente [nombreC=" + nombreC + ", numeroT=" + numeroT + ", email=" + email + ", sexo=" + sexo
-					+ ", peso=" + peso + ", kilos=" + kilos + ", nogustos=" + nogustos + ", diasentreno=" + diasentreno
-					+ ", mesesentrenados=" + mesesentrenados + ", nivel=" + nivel + ", lesion=" + lesion + ", objetivo="
-					+ objetivo + ", entrenador=" + entrenador + ", lugar=" + lugar + ", numerocomidas=" + numerocomidas
-					+ ", TMB=" + TMB + "]";
+			return "Cliente [nombreC=" + nombreC + ", numeroT=" + numeroT + ", email=" + email + ", insta=" + insta
+					+ ", sexo=" + sexo + ", peso=" + peso + ", kilos=" + kilos + ", nogustos=" + nogustos
+					+ ", diasentreno=" + diasentreno + ", mesesentrenados=" + mesesentrenados + ", nivel=" + nivel
+					+ ", lesion=" + lesion + ", objetivo=" + objetivo + ", entrenador=" + entrenador + ", lugar="
+					+ lugar + ", numerocomidas=" + numerocomidas + ", TMB=" + TMB + "]";
 		}
 
+		
 		
 		
 		
