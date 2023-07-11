@@ -100,34 +100,48 @@ public class VentanaInicio extends JFrame {
 		String archivoCSV = "src/main/resources/entrenadoresPrincipiantes.csv";
 		
 		btnInicioNormal.addActionListener((i) -> {
-		try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
-		    String line;
+//		try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
+//		    String line;
+			
+			try {
 		    String usuarioIngresado = textFieldUSU.getText();
 			String contraseñaIngresada = textFieldCONTRA.getText();
+//			
+			if (usuarioIngresado.equals("admin") && contraseñaIngresada.equals("admin")) {
+				System.out.println("Inicio de sesión exitoso");
+	            Usuario usuario = new EntrenadorPrincipiante(usuarioIngresado,contraseñaIngresada);
+	            
+	            dispose();
+				VentanaPrincipal ve = new VentanaPrincipal(usuario);
+				ve.setVisible(true);
+			}
 			
-		    while ((line = br.readLine()) != null) {
-		        String[] fields = line.split(";");
-		        String usuarioCSV = fields[0].trim();
-		        String contraseñaCSV = fields[1].trim();
-
-		        if (usuarioIngresado.equals(usuarioCSV) && contraseñaIngresada.equals(contraseñaCSV)) {
-		            // Iniciar sesión
-		            System.out.println("Inicio de sesión exitoso");
-		            Usuario usuario = new EntrenadorPrincipiante(usuarioIngresado,contraseñaIngresada);
-		            
-		            dispose();
-					VentanaPrincipal ve = new VentanaPrincipal(usuario);
-					ve.setVisible(true);
-					
-		        }
-		    }
-
-		    // Si se llega a este punto, no se encontró una coincidencia válida
-		    //System.out.println("Inicio de sesión fallido");
 		} catch (IOException | GeneralSecurityException e) {
 		    e.printStackTrace();
 		}
-		
+//		    while ((line = br.readLine()) != null) {
+//		        String[] fields = line.split(";");
+//		        String usuarioCSV = fields[0].trim();
+//		        String contraseñaCSV = fields[1].trim();
+//
+//		        if (usuarioIngresado.equals(usuarioCSV) && contraseñaIngresada.equals(contraseñaCSV)) {
+//		            // Iniciar sesión
+//		            System.out.println("Inicio de sesión exitoso");
+//		            Usuario usuario = new EntrenadorPrincipiante(usuarioIngresado,contraseñaIngresada);
+//		            
+//		            dispose();
+//					VentanaPrincipal ve = new VentanaPrincipal(usuario);
+//					ve.setVisible(true);
+//					
+//		        }
+//		    }
+//
+//		    // Si se llega a este punto, no se encontró una coincidencia válida
+//		    //System.out.println("Inicio de sesión fallido");
+//		} catch (IOException | GeneralSecurityException e) {
+//		    e.printStackTrace();
+//		}
+//		
 		});
 		
 		//CREAMOS LA IMAGEN DE FONDO
