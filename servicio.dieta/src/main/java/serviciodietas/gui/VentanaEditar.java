@@ -14,6 +14,7 @@ import serviciodietas.data.Nivel;
 import serviciodietas.data.Objetivo;
 import serviciodietas.data.Peso;
 import serviciodietas.data.Sexo;
+import serviciodietas.data.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -46,7 +47,7 @@ public class VentanaEditar extends JFrame {
 	private JRadioButton rdbtnAvanzado;
 	private JRadioButton rdbtnINTERMEDIO;
 	private JRadioButton rdbtnPRINCIPIANTE;
-	private JComboBox comboBoxMESES;
+	//private JComboBox comboBoxMESES;
 	private JCheckBox chckbxVegan;
 	private JCheckBox chckbxVegetarian;
 	private JCheckBox chckbxPescado;
@@ -67,7 +68,7 @@ public class VentanaEditar extends JFrame {
 	private JPanel panel_1_1;
 
 
-	public VentanaEditar(Cliente cliente, String busqueda) {
+	public VentanaEditar(Cliente cliente, String busqueda, Usuario u) {
 		
 		//DEFINIR VENTANA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,7 +99,7 @@ public class VentanaEditar extends JFrame {
 				JOptionPane.showConfirmDialog(null, "Los datos cambiados no se guardaran!", "Estas seguro?", JOptionPane.OK_CANCEL_OPTION);
 				VentanaPrincipal vp = null;
 				try {
-					vp = new VentanaPrincipal();
+					vp = new VentanaPrincipal(u);
 					dispose();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -138,7 +139,7 @@ public class VentanaEditar extends JFrame {
 				
 				int diasentreno= Integer.parseInt(comboBoxDIAS.getSelectedItem().toString());
 				
-				int mesesentrenados = Integer.parseInt(comboBoxMESES.getSelectedItem().toString());
+//				int mesesentrenados = Integer.parseInt(comboBoxMESES.getSelectedItem().toString());
 				
 				int numerocomidas = Integer.parseInt(comboBoxNUMCOM.getSelectedItem().toString());
 				
@@ -229,7 +230,7 @@ public class VentanaEditar extends JFrame {
 				}
 				
 				try {
-					serviciodieta.persistencia.SpreadSheets.modificarCliente(nombreC, sexo, peso, nogustos, diasentreno, mesesentrenados, nivel, lesiones, objetivo, entrenador, numT, lugar, numerocomidas);
+					serviciodieta.persistencia.SpreadSheets.modificarCliente(nombreC, sexo, peso, nogustos, diasentreno, nivel, lesiones, objetivo, entrenador, numT, lugar, numerocomidas);
 				} catch (IOException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
@@ -239,7 +240,7 @@ public class VentanaEditar extends JFrame {
 				}
 				
 				try {
-					VentanaPrincipal vp = new VentanaPrincipal();
+					VentanaPrincipal vp = new VentanaPrincipal(u);
 					vp.filtroNombre.setText(busqueda);
 					vp.setVisible(true);
 					
@@ -357,15 +358,10 @@ public class VentanaEditar extends JFrame {
 		lblLesiones.setBounds(343, 260, 68, 14);
 		contentPane.add(lblLesiones);
 		
-		JLabel lblMesesEntrenados = new JLabel("MESES ENTRENADOS:");
-		lblMesesEntrenados.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblMesesEntrenados.setBounds(343, 211, 134, 14);
-		contentPane.add(lblMesesEntrenados);
-		
-		comboBoxMESES = new JComboBox();
-		comboBoxMESES.setMaximumRowCount(13);
-		comboBoxMESES.setBounds(487, 207, 73, 22);
-		contentPane.add(comboBoxMESES);
+//		comboBoxMESES = new JComboBox();
+//		comboBoxMESES.setMaximumRowCount(13);
+//		comboBoxMESES.setBounds(487, 207, 73, 22);
+//		contentPane.add(comboBoxMESES);
 		
 		comboBoxNUMCOM = new JComboBox();
 		comboBoxNUMCOM.setMaximumRowCount(4);
@@ -500,47 +496,47 @@ public class VentanaEditar extends JFrame {
 			chckbxVegetarian.setSelected(true);
 		}
 		
-		comboBoxMESES.addItem("0");
-		comboBoxMESES.addItem("1");
-		comboBoxMESES.addItem("2");
-		comboBoxMESES.addItem("3");
-		comboBoxMESES.addItem("4");
-		comboBoxMESES.addItem("5");
-		comboBoxMESES.addItem("6");
-		comboBoxMESES.addItem("7");
-		comboBoxMESES.addItem("8");
-		comboBoxMESES.addItem("9");
-		comboBoxMESES.addItem("10");
-		comboBoxMESES.addItem("11");
-		comboBoxMESES.addItem("12");
+//		comboBoxMESES.addItem("0");
+//		comboBoxMESES.addItem("1");
+//		comboBoxMESES.addItem("2");
+//		comboBoxMESES.addItem("3");
+//		comboBoxMESES.addItem("4");
+//		comboBoxMESES.addItem("5");
+//		comboBoxMESES.addItem("6");
+//		comboBoxMESES.addItem("7");
+//		comboBoxMESES.addItem("8");
+//		comboBoxMESES.addItem("9");
+//		comboBoxMESES.addItem("10");
+//		comboBoxMESES.addItem("11");
+//		comboBoxMESES.addItem("12");
 		
-		if (cliente.getMesesentrenados() == 0) {
-			comboBoxMESES.setSelectedIndex(0);
-		} else if (cliente.getMesesentrenados() == 1) {
-			comboBoxMESES.setSelectedIndex(1);
-		} else if (cliente.getMesesentrenados() == 2) {
-			comboBoxMESES.setSelectedIndex(2);
-		} else if (cliente.getMesesentrenados() == 3) {
-			comboBoxMESES.setSelectedIndex(3);
-		} else if (cliente.getMesesentrenados() == 4) {
-			comboBoxMESES.setSelectedIndex(4);
-		} else if (cliente.getMesesentrenados() == 5) {
-			comboBoxMESES.setSelectedIndex(5);
-		} else if (cliente.getMesesentrenados() == 6) {
-			comboBoxMESES.setSelectedIndex(6);
-		} else if (cliente.getMesesentrenados() == 7) {
-			comboBoxMESES.setSelectedIndex(7);
-		} else if (cliente.getMesesentrenados() == 8) {
-			comboBoxMESES.setSelectedIndex(8);
-		} else if (cliente.getMesesentrenados() == 9) {
-			comboBoxMESES.setSelectedIndex(9);
-		} else if (cliente.getMesesentrenados() == 10) {
-			comboBoxMESES.setSelectedIndex(10);
-		} else if (cliente.getMesesentrenados() == 11) {
-			comboBoxMESES.setSelectedIndex(11);
-		} else {
-			comboBoxMESES.setSelectedIndex(12);
-		}
+//		if (cliente.getMesesentrenados() == 0) {
+//			comboBoxMESES.setSelectedIndex(0);
+//		} else if (cliente.getMesesentrenados() == 1) {
+//			comboBoxMESES.setSelectedIndex(1);
+//		} else if (cliente.getMesesentrenados() == 2) {
+//			comboBoxMESES.setSelectedIndex(2);
+//		} else if (cliente.getMesesentrenados() == 3) {
+//			comboBoxMESES.setSelectedIndex(3);
+//		} else if (cliente.getMesesentrenados() == 4) {
+//			comboBoxMESES.setSelectedIndex(4);
+//		} else if (cliente.getMesesentrenados() == 5) {
+//			comboBoxMESES.setSelectedIndex(5);
+//		} else if (cliente.getMesesentrenados() == 6) {
+//			comboBoxMESES.setSelectedIndex(6);
+//		} else if (cliente.getMesesentrenados() == 7) {
+//			comboBoxMESES.setSelectedIndex(7);
+//		} else if (cliente.getMesesentrenados() == 8) {
+//			comboBoxMESES.setSelectedIndex(8);
+//		} else if (cliente.getMesesentrenados() == 9) {
+//			comboBoxMESES.setSelectedIndex(9);
+//		} else if (cliente.getMesesentrenados() == 10) {
+//			comboBoxMESES.setSelectedIndex(10);
+//		} else if (cliente.getMesesentrenados() == 11) {
+//			comboBoxMESES.setSelectedIndex(11);
+//		} else {
+//			comboBoxMESES.setSelectedIndex(12);
+//		}
 		
 		if (cliente.getLesion().equals(Lesion.hombro)) {
 			rdbtnHombro.setSelected(true);
@@ -592,11 +588,11 @@ public class VentanaEditar extends JFrame {
 		
 		JLabel lblEntrenador = new JLabel("ENTRENADOR:");
 		lblEntrenador.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblEntrenador.setBounds(552, 260, 109, 14);
+		lblEntrenador.setBounds(343, 217, 109, 14);
 		contentPane.add(lblEntrenador);
 		
 		textFieldEnt = new JTextField(cliente.getEntrenador());
-		textFieldEnt.setBounds(542, 283, 132, 20);
+		textFieldEnt.setBounds(439, 215, 163, 20);
 		contentPane.add(textFieldEnt);
 		
 		
@@ -643,13 +639,8 @@ public class VentanaEditar extends JFrame {
 		JLabel lblTMB = new JLabel("TMB: " + cliente.getTMB()+" KCal");  //INICIALIZAR TMB
 		lblTMB.setForeground(Color.RED);
 		lblTMB.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblTMB.setBounds(542, 335, 119, 18);
+		lblTMB.setBounds(542, 308, 132, 32);
 		contentPane.add(lblTMB);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 255, 240));
-		panel_1.setBounds(335, 11, 339, 362);
-		contentPane.add(panel_1);
 		
 		JLabel lblInstagram = new JLabel("IG: "+cliente.getInsta());
 		lblInstagram.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -660,6 +651,11 @@ public class VentanaEditar extends JFrame {
 		panel_1_1.setBackground(new Color(255, 255, 240));
 		panel_1_1.setBounds(10, 11, 318, 362);
 		contentPane.add(panel_1_1);
+		
+		JPanel panel_1_1_1 = new JPanel();
+		panel_1_1_1.setBackground(new Color(255, 255, 240));
+		panel_1_1_1.setBounds(335, 11, 339, 362);
+		contentPane.add(panel_1_1_1);
 		
 		
 	}

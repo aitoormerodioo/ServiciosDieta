@@ -14,6 +14,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 import serviciodietas.data.Cliente;
+import serviciodietas.data.Usuario;
 
 public class EditarRendererEditor extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 	
@@ -46,8 +47,9 @@ public class EditarRendererEditor extends AbstractCellEditor implements TableCel
 		
 		BotonEditar.addActionListener((e) -> {
 			String busqueda = mainWindow.filtroNombre.getText();
+			Usuario u = mainWindow.u;
 			mainWindow.dispose();
-			VentanaEditar ve = new VentanaEditar(cliente, busqueda);
+			VentanaEditar ve = new VentanaEditar(cliente, busqueda, u);
 			ve.setVisible(true);
 			
 		});

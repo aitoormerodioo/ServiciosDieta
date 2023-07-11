@@ -61,18 +61,21 @@ public class VentanaPrincipal extends JFrame {
 	public static List<Cliente> clientes = new ArrayList<>();
 	
 	private JPanel contentPane;
+	private JButton botonstatis;
 	private static JTable tablaClientes = new JTable();
 	JTextField filtroNombre;
 	private TableRowSorter filtro;
+	Usuario u;
 
 
 	
-	public VentanaPrincipal() throws IOException, GeneralSecurityException {
-		inicializar();
+	public VentanaPrincipal(Usuario u) throws IOException, GeneralSecurityException {
+		inicializar(u);
 		
 	}
 	
-	public void inicializar() throws IOException, GeneralSecurityException{
+	
+	public void inicializar(Usuario u) throws IOException, GeneralSecurityException{
 		
 		//DEFINIR VENTANA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,6 +89,8 @@ public class VentanaPrincipal extends JFrame {
                 //tablaClientes.getRowSorter().toggleSortOrder(columnaTabla);
             }
         });
+		
+		
 		setBounds(100, 100, 700, 450);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));

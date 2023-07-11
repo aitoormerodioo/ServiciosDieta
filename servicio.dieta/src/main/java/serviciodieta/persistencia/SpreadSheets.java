@@ -77,7 +77,7 @@ public class SpreadSheets {
 
 	// Configura la biblioteca de autenticación de Google para Java para renovar automáticamente el token de acceso
 	if (googleCredential.getExpiresInSeconds() != null && googleCredential.getExpiresInSeconds() <= 0) {
-        // If the access token has expired or will expire within 1 minute, then refresh it
+        
         googleCredential.refreshToken();
     }
 	return googleCredential;
@@ -146,7 +146,7 @@ public static List<Cliente> cargarClientes() throws GeneralSecurityException, IO
 				
 				int diasentreno = Integer.parseInt(row.get(12).toString());
 				
-				int mesesentrenados = Integer.parseInt(row.get(18).toString());
+				//int mesesentrenados = Integer.parseInt(row.get(18).toString());
 				
 				Nivel nivel = Nivel.principiante;
 				if (row.get(11).toString().equals("Intermedio (1-3 años entrenando)")) {
@@ -189,7 +189,7 @@ public static List<Cliente> cargarClientes() throws GeneralSecurityException, IO
 				
 				String insta= row.get(25).toString();
 				
-				Cliente cliente = new Cliente(nombreC, numeroT, email, insta, sexo, peso, kilos, noGustos, diasentreno, mesesentrenados, nivel, lesion, objetivo, entrenador, lugar, numerocomidas);
+				Cliente cliente = new Cliente(nombreC, numeroT, email, insta, sexo, peso, kilos, noGustos, diasentreno, nivel, lesion, objetivo, entrenador, lugar, numerocomidas);
 				   
 				listaClientes.add(cliente);
 		}
@@ -207,7 +207,7 @@ public static List<Cliente> cargarClientes() throws GeneralSecurityException, IO
 		}
 	}
 	
-	public static void modificarCliente(String nombreC, String sexo, int peso, String noGustos, int diasentreno, int mesesentrenados, String nivel, String lesion, String objetivo, String entrenador, String numT, String lugar, int numerocomidas) throws IOException, GeneralSecurityException {
+	public static void modificarCliente(String nombreC, String sexo, int peso, String noGustos, int diasentreno, String nivel, String lesion, String objetivo, String entrenador, String numT, String lugar, int numerocomidas) throws IOException, GeneralSecurityException {
 		
 		//CREAMOS EL SERVICIO SHEETS PARA CARGAR DATOS
 		try{sheetsService = serviciodieta.persistencia.SpreadSheets.getSheetsService();
@@ -236,7 +236,7 @@ public static List<Cliente> cargarClientes() throws GeneralSecurityException, IO
 		    }
 		}
 		
-		List<Object> newValues = Arrays.asList(null, null, null, null, null, null, objetivo, noGustos, null, null, null, nivel, diasentreno, lesion, null, null, null, entrenador, mesesentrenados, sexo, null, peso, null, lugar, numerocomidas);
+		List<Object> newValues = Arrays.asList(null, null, null, null, null, null, objetivo, noGustos, null, null, null, nivel, diasentreno, lesion, null, null, null, entrenador, null, sexo, null, peso, null, lugar, numerocomidas);
 		
 		String range = "clientes!A"+filam+":Z"+filam;
 		

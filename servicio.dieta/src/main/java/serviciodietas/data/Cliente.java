@@ -11,7 +11,6 @@ public class Cliente {
 		private int kilos;
 		private String nogustos;
 		private int diasentreno;
-		private int mesesentrenados;
 		private Nivel nivel;
 		private Lesion lesion;
 		private Objetivo objetivo;
@@ -21,7 +20,7 @@ public class Cliente {
 		private float TMB;
 		
 		public Cliente(String nombreC, String numeroT, String email, String insta, Sexo sexo, Peso peso,int kilos, String nogustos,
-				int diasentreno, int mesesentrenados, Nivel nivel, Lesion lesion, Objetivo objetivo, String entrenador,
+				int diasentreno, Nivel nivel, Lesion lesion, Objetivo objetivo, String entrenador,
 				Lugar lugar, int numerocomidas) {
 			super();
 			this.nombreC = nombreC;
@@ -33,7 +32,6 @@ public class Cliente {
 			this.kilos=kilos;
 			this.nogustos = nogustos;
 			this.diasentreno = diasentreno;
-			this.mesesentrenados = mesesentrenados;
 			this.nivel = nivel;
 			this.lesion = lesion;
 			this.objetivo = objetivo;
@@ -139,13 +137,6 @@ public class Cliente {
 			this.diasentreno = diasentreno;
 		}
 
-		public int getMesesentrenados() {
-			return mesesentrenados;
-		}
-
-		public void setMesesentrenados(int mesesentrenados) {
-			this.mesesentrenados = mesesentrenados;
-		}
 
 		public Nivel getNivel() {
 			return nivel;
@@ -207,7 +198,7 @@ public class Cliente {
 		public String toString() {
 			return "Cliente [nombreC=" + nombreC + ", numeroT=" + numeroT + ", email=" + email + ", insta=" + insta
 					+ ", sexo=" + sexo + ", peso=" + peso + ", kilos=" + kilos + ", nogustos=" + nogustos
-					+ ", diasentreno=" + diasentreno + ", mesesentrenados=" + mesesentrenados + ", nivel=" + nivel
+					+ ", diasentreno=" + diasentreno +  ", nivel=" + nivel
 					+ ", lesion=" + lesion + ", objetivo=" + objetivo + ", entrenador=" + entrenador + ", lugar="
 					+ lugar + ", numerocomidas=" + numerocomidas + ", TMB=" + TMB + "]";
 		}
