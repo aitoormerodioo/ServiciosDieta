@@ -114,6 +114,27 @@ public class VentanaInicio extends JFrame {
 	            dispose();
 				VentanaPrincipal ve = new VentanaPrincipal(usuario);
 				ve.setVisible(true);
+			} else if (usuarioIngresado.equals("jicaza") && contraseñaIngresada.equals("jicaza")) {
+				System.out.println("Inicio de sesión exitoso");
+	            Usuario usuario = new EntrenadorPrincipiante(usuarioIngresado,contraseñaIngresada);
+	            
+	            dispose();
+				VentanaPrincipal ve = new VentanaPrincipal(usuario);
+				ve.setVisible(true);
+			} else if (usuarioIngresado.equals("asierm") && contraseñaIngresada.equals("asierm")) {
+				System.out.println("Inicio de sesión exitoso");
+	            Usuario usuario = new EntrenadorPrincipiante(usuarioIngresado,contraseñaIngresada);
+	            
+	            dispose();
+				VentanaPrincipal ve = new VentanaPrincipal(usuario);
+				ve.setVisible(true);
+			} else if (usuarioIngresado.equals("mikel") && contraseñaIngresada.equals("mikel")) {
+				System.out.println("Inicio de sesión exitoso");
+	            Usuario usuario = new EntrenadorPrincipiante(usuarioIngresado,contraseñaIngresada);
+	            
+	            dispose();
+				VentanaPrincipal ve = new VentanaPrincipal(usuario);
+				ve.setVisible(true);
 			}
 			
 		} catch (IOException | GeneralSecurityException e) {

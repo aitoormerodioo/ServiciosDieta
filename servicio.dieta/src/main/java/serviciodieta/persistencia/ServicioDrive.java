@@ -35,12 +35,7 @@ import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+
 
 import serviciodietas.data.Cliente;
 import serviciodietas.data.Lesion;
@@ -49,7 +44,7 @@ import serviciodietas.data.Nivel;
 import serviciodietas.data.Objetivo;
 import serviciodietas.data.Peso;
 import serviciodietas.data.Sexo;
-import serviciodietas.utils.HiloProgreso;
+
 
 public class ServicioDrive {
 	
@@ -693,8 +688,8 @@ public class ServicioDrive {
 		int ind = 1;
 		try {
 			int totalArchivos = request1.execute().getItems().size();
-		    HiloProgreso progressThread = new HiloProgreso(totalArchivos);
-		    progressThread.start();
+//		    HiloProgreso progressThread = new HiloProgreso(totalArchivos);
+//		    progressThread.start();
 		    
 			for (File file : request1.execute().getItems()) {
 			
@@ -729,10 +724,10 @@ public class ServicioDrive {
 		    drive.files().get(file.getId()).executeMediaAndDownloadTo(outputStream);
 		    outputStream.flush();
 		    outputStream.close();
-		   	ind++;
-		   	progressThread.archivoDescargado();
+//		   	ind++;
+//		   	progressThread.archivoDescargado();
 			}
-			progressThread.join();
+//			progressThread.join();
 //			}
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "El archivo de dieta no existe.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1304,8 +1299,8 @@ public class ServicioDrive {
 		int ind2 = 1;
 		try {
 			int totalArchivos = request2.execute().getItems().size();
-		    HiloProgreso progressThread = new HiloProgreso(totalArchivos);
-		    progressThread.start();
+//		    HiloProgreso progressThread = new HiloProgreso(totalArchivos);
+//		    progressThread.start();
 		    
 			for (File file : request2.execute().getItems()) {
 			
@@ -1342,9 +1337,9 @@ public class ServicioDrive {
 		    outputStream.flush();
 		    outputStream.close();
 		   	ind++;
-		   	progressThread.archivoDescargado();
+//		   	progressThread.archivoDescargado();
 			}
-			progressThread.join();
+//			progressThread.join();
 //			}
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "El archivo de dieta no existe.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1701,8 +1696,8 @@ public class ServicioDrive {
 		try {
 			
 			int totalArchivos = request3.execute().getItems().size();
-		    HiloProgreso progressThread = new HiloProgreso(totalArchivos);
-		    progressThread.start();
+//		    HiloProgreso progressThread = new HiloProgreso(totalArchivos);
+//		    progressThread.start();
 		    
 			for (File file : request3.execute().getItems()) {
 			if (archivosD!=0) {
@@ -1719,10 +1714,10 @@ public class ServicioDrive {
 		    FileOutputStream fos = new FileOutputStream(new java.io.File(destinationFolderD, cabezerafile+" "+cliente.getNombreC()+".xlsx"));
 		    fos.write(byteArray);
 		    fos.close();
-		    progressThread.archivoDescargado();
+//		    progressThread.archivoDescargado();
 			}
 		}
-			progressThread.join();
+//			progressThread.join();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "El archivo de entrenamiento existe.", "Error", JOptionPane.ERROR_MESSAGE);
 		}

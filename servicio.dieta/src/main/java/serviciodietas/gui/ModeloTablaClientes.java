@@ -61,7 +61,7 @@ private static final long serialVersionUID = 1L;
 		Cliente cliente = clientes.get(rowIndex);
 		
 		switch (columnIndex) {
-			case 0: return transformName(cliente.getNombreC()).toUpperCase();
+			case 0: return transformName(cliente.getNombreC()).toUpperCase()+"-"+cliente.getNumeroT();
 			case 1: return cliente.getEntrenador();
 			case 2: return cliente;
 			case 3: return cliente;
